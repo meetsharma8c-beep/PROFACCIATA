@@ -1,0 +1,2100 @@
+/* Cascade layer order: reset lowest, then Tailwind/Quanta base, then
+ * components and finally utilities — so Quanta's q-* utilities (e.g.
+ * q-button-*) always win over global element resets. */
+@layer reset, theme, base, components, utilities;
+
+@import "tailwindcss" source(none);
+@source "../src";
+@source "../packages/app-landing/src";
+@source "../packages/quanta/src";
+@import "@higgsfield/quanta/tailwind.css";
+
+/* New in-app Quanta-style components (moved out of the quanta package). Their
+ * CSS uses Tailwind v4 @utility/@source, so it must load through this tailwind
+ * entry. Ordering mirrors quanta's components.css (composer after button;
+ * media-card + generation-card after media). */
+@import "./components/composer/composer.css";
+@import "./components/media-card/media-card.css";
+@import "./components/generation-card/generation-card.css";
+@import "./components/setting-trigger/setting-trigger.css";
+@import "./components/prompt-box/prompt-box.css";
+@import "./components/icon-tile/icon-tile.css";
+
+@import "tw-animate-css";
+/* shadcn v4 base (scrollbar/scroll-fade utilities, toast base) for src/components/ui */
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:where([data-theme="default-dark"], [data-theme="default-dark"] *));
+
+/*
+ * Quanta is the visual source of truth. This file imports Quanta's Tailwind
+ * entry once; that entry brings in primitives, semantic theme variables,
+ * typography, z-index, border-width, and q-* component utilities.
+ *
+ * Generated app layout should use normal Tailwind spacing (`p-4`, `gap-2`,
+ * `mt-6`, `h-10`) and Quanta semantic utilities for color/type
+ * (`bg-q-background-primary`, `text-q-body-md-regular`). Do not use old numeric
+ * token classes such as `px-400` / `gap-200`, and do not reach for raw
+ * q-spacing vars in app code. Quanta component internals own their q-* classes.
+ *
+ * The `--spacing: 0.25rem` restoration keeps native Tailwind layout utilities
+ * stable for generated apps and legacy scaffold components. The inline theme
+ * aliases below keep shadcn-style imports rendering while new UI migrates to
+ * Quanta components.
+ */
+@theme {
+  --spacing: 0.25rem;
+}
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+
+  --color-background: var(--hf-color-background-primary);
+  --color-foreground: var(--hf-color-text-primary);
+  --color-card: var(--hf-color-background-secondary);
+  --color-card-foreground: var(--hf-color-text-primary);
+  --color-popover: var(--hf-color-background-secondary);
+  --color-popover-foreground: var(--hf-color-text-primary);
+  --color-primary: var(--hf-color-button-brand);
+  --color-primary-foreground: var(--hf-color-button-label-brand);
+  --color-secondary: var(--hf-color-background-secondary);
+  --color-secondary-foreground: var(--hf-color-text-primary);
+  --color-muted: var(--hf-color-background-tertiary);
+  --color-muted-foreground: var(--hf-color-text-secondary);
+  --color-accent: var(--hf-color-overlay-hover);
+  --color-accent-foreground: var(--hf-color-text-primary);
+  /* shadcn v4 components use text-destructive on tinted fills — needs the
+   * bright brand red, not the dark error surface */
+  --color-destructive: var(--hf-color-button-destructive);
+  --color-destructive-foreground: var(--hf-color-button-label-destructive);
+  --color-border: var(--hf-color-border-default);
+  --color-input: var(--hf-color-border-default);
+  --color-ring: var(--hf-color-border-focus);
+  --color-ring-offset-background: var(--hf-color-background-primary);
+
+  --color-chart-1: var(--hf-color-lime-500);
+  --color-chart-2: var(--hf-color-pink-500);
+  --color-chart-3: var(--hf-color-blue-500);
+  --color-chart-4: var(--hf-color-yellow-500);
+  --color-chart-5: var(--hf-color-purple-500);
+
+  --color-sidebar: var(--hf-color-background-secondary);
+  --color-sidebar-foreground: var(--hf-color-text-primary);
+  --color-sidebar-primary: var(--hf-color-button-brand);
+  --color-sidebar-primary-foreground: var(--hf-color-button-label-brand);
+  --color-sidebar-accent: var(--hf-color-overlay-hover);
+  --color-sidebar-accent-foreground: var(--hf-color-text-primary);
+  --color-sidebar-border: var(--hf-color-border-default);
+  --color-sidebar-ring: var(--hf-color-border-focus);
+
+  --font-grotesk: var(--hf-type-family-grotesk);
+}
+
+/* Fills used by src/components/ui (badge, tabs, marketing-button), mapped to
+ * Quanta's --hf-gradient-* tokens. */
+@utility badge-gradient-blue {
+  background-image: var(--hf-gradient-badge-blue);
+}
+@utility badge-gradient-pink {
+  background-image: var(--hf-gradient-badge-pink);
+}
+@utility badge-gradient-purple {
+  background-image: var(--hf-gradient-badge-purple);
+}
+@utility glass-sheen {
+  background-image: var(--hf-gradient-glass-sheen);
+}
+@utility gloss-lime {
+  background-image:
+    var(--hf-gradient-special-gloss-lime-angled),
+    linear-gradient(90deg, var(--hf-color-lime-500), var(--hf-color-lime-500));
+}
+@utility gloss-pink {
+  background-image:
+    var(--hf-gradient-special-gloss-pink),
+    linear-gradient(90deg, var(--hf-color-pink-500), var(--hf-color-pink-500));
+}
+
+/* Toast skin (Figma node 4085:2671): compact glass pill, kind-colored fills */
+[data-sonner-toast][data-styled="true"] {
+  width: fit-content;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border: 1px solid var(--hf-color-transparent-light-05);
+  border-radius: var(--hf-radius-300, 12px);
+  background: var(--hf-color-glass-dark);
+  backdrop-filter: blur(40px);
+  box-shadow: 0 6px 6px rgb(0 0 0 / 0.25);
+  color: var(--hf-color-text-primary);
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+}
+[data-sonner-toast][data-type="success"] {
+  border-color: var(--hf-color-transparent-light-15);
+  background: #68b922; /* toast/success — raw value in Figma, no hf token */
+  backdrop-filter: none;
+}
+[data-sonner-toast].toast-new {
+  border-color: var(--hf-color-transparent-light-15);
+  background: #7a58ff; /* toast/new — raw value in Figma, no hf token */
+  backdrop-filter: none;
+}
+[data-sonner-toast] [data-close-button] {
+  position: static;
+  order: 9;
+  margin-left: 4px;
+  border: none;
+  background: transparent;
+  color: inherit;
+  transform: none;
+}
+[data-sonner-toast] [data-close-button]:hover {
+  background: var(--hf-color-overlay-hover);
+}
+
+:root {
+  --radius: 0.625rem;
+}
+
+@layer base {
+  html {
+    background-color: var(--hf-color-background-primary);
+    color: var(--hf-color-text-primary);
+    color-scheme: dark;
+  }
+
+  body {
+    min-height: 100vh;
+    background-color: var(--hf-color-background-primary);
+    color: var(--hf-color-text-primary);
+    font-family: var(--hf-type-family-secondary);
+  }
+
+  * {
+    border-color: var(--hf-color-border-default);
+  }
+}
+
+/* ==========================================================================
+   PROFACCIATA — "MONOLITH & GRAZING LIGHT" ARCHITECTURAL DESIGN SYSTEM
+   ========================================================================== */
+
+:root {
+  --pf-surface-brand: #ffffff;
+  --pf-paper: #f4f1ea;
+  --pf-plaster: #eae5dc;
+  --pf-stone: #dcd6ca;
+  --pf-ink: #161816;
+  --pf-ink-secondary: #434843;
+  --pf-muted: #666b65;
+  --pf-accent: #9e5a3c;
+  --pf-mineral: #1e352b;
+  --pf-dark: #121614;
+  --pf-dark-elevated: #1a201d;
+  --pf-line: rgba(22, 24, 22, 0.13);
+  --pf-line-strong: rgba(22, 24, 22, 0.24);
+  --pf-line-light: rgba(244, 241, 234, 0.16);
+  --pf-display: "Cormorant Garamond", Georgia, serif;
+  --pf-body: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+  --pf-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+html {
+  color-scheme: light;
+  background-color: var(--pf-paper);
+  color: var(--pf-ink);
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  background-color: var(--pf-paper);
+  color: var(--pf-ink);
+  font-family: var(--pf-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.pf-site,
+.pf-site * {
+  box-sizing: border-box;
+}
+
+.pf-site {
+  position: relative;
+  overflow: clip;
+  background-color: var(--pf-paper);
+  color: var(--pf-ink);
+  font-family: var(--pf-body);
+}
+
+/* --------------------------------------------------------------------------
+   00. ARCHITECTURAL DATUM HEADER & BRAND LOGO
+   -------------------------------------------------------------------------- */
+.pf-header {
+  position: fixed;
+  z-index: 60;
+  top: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  min-height: 78px;
+  padding: 8px clamp(20px, 4vw, 56px);
+  background-color: var(--pf-surface-brand);
+  border-bottom: 1px solid var(--pf-line);
+  box-shadow: 0 2px 18px rgba(22, 24, 22, 0.04);
+}
+
+.pf-brand-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 8px;
+  background-color: var(--pf-surface-brand);
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.pf-brand-logo {
+  display: block;
+  height: 50px;
+  width: auto;
+  max-width: 240px;
+  object-fit: contain;
+}
+
+.pf-nav {
+  display: flex;
+  align-items: center;
+  gap: clamp(18px, 2.4vw, 34px);
+}
+
+.pf-nav a {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  color: var(--pf-ink);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  opacity: 0.82;
+  transition: opacity 160ms ease, color 160ms ease;
+}
+
+.pf-nav a:hover {
+  opacity: 1;
+  color: var(--pf-accent);
+}
+
+.pf-nav-idx {
+  font-family: var(--pf-mono);
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--pf-accent);
+}
+
+.pf-header-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pf-header-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 44px;
+  padding: 0 18px;
+  background-color: var(--pf-ink);
+  color: var(--pf-surface-brand);
+  border: 1px solid var(--pf-ink);
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  transition: background-color 180ms ease, border-color 180ms ease;
+}
+
+.pf-header-cta:hover {
+  background-color: var(--pf-mineral);
+  border-color: var(--pf-mineral);
+}
+
+.pf-mobile-menu-btn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 0 12px;
+  background-color: var(--pf-paper);
+  color: var(--pf-ink);
+  border: 1px solid var(--pf-line-strong);
+  font-family: var(--pf-mono);
+  font-size: 11px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.pf-mobile-drawer {
+  position: fixed;
+  z-index: 59;
+  top: 66px;
+  right: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--pf-surface-brand);
+  border-bottom: 2px solid var(--pf-ink);
+  box-shadow: 0 18px 40px rgba(22, 24, 22, 0.16);
+}
+
+.pf-mobile-drawer a {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 15px 22px;
+  border-top: 1px solid var(--pf-line);
+  color: var(--pf-ink);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.pf-mobile-drawer a span {
+  font-family: var(--pf-mono);
+  font-size: 11px;
+  color: var(--pf-accent);
+}
+
+/* --------------------------------------------------------------------------
+   01. CINEMATIC MULTI-SCENE SCROLL-SCRUB HERO
+   -------------------------------------------------------------------------- */
+.pf-hero {
+  position: relative;
+  padding-top: 0;
+}
+
+.pf-scroll-scrub {
+  --ss-bg: var(--pf-paper);
+}
+
+.pf-scroll-scrub .scroll-scrub__stage {
+  background: var(--pf-dark);
+}
+
+.pf-scroll-scrub .scroll-scrub__media::after {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  content: "";
+  pointer-events: none;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(18, 22, 20, 0.72) 0%,
+      rgba(18, 22, 20, 0.36) 48%,
+      rgba(18, 22, 20, 0.18) 100%
+    ),
+    linear-gradient(
+      0deg,
+      rgba(18, 22, 20, 0.72) 0%,
+      transparent 45%
+    );
+}
+
+.pf-scroll-scrub .scroll-scrub__chapter-pin {
+  padding-top: clamp(5.5rem, 9vw, 8.5rem);
+}
+
+.pf-scroll-scrub .scroll-scrub__copy {
+  width: min(42rem, 52vw);
+  padding: clamp(24px, 3vw, 36px);
+  background: rgba(244, 241, 234, 0.94);
+  border: 1px solid rgba(22, 24, 22, 0.16);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 24px 60px rgba(12, 15, 14, 0.26);
+}
+
+.pf-scroll-scrub .scroll-scrub__copy::before {
+  display: none;
+}
+
+.pf-scroll-scrub .scroll-scrub__kicker,
+.pf-section-label {
+  margin: 0 0 14px;
+  font-family: var(--pf-mono);
+  color: var(--pf-accent);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+
+.pf-section-label--light {
+  color: #e0a88b;
+}
+
+.pf-scroll-scrub .scroll-scrub__title {
+  max-width: 13ch;
+  margin: 0;
+  color: var(--pf-ink);
+  font-family: var(--pf-display);
+  font-size: clamp(44px, 5.4vw, 76px);
+  font-weight: 600;
+  line-height: 0.96;
+  letter-spacing: -0.03em;
+}
+
+.pf-scroll-scrub .scroll-scrub__body {
+  max-width: 46ch;
+  margin-top: 18px;
+  color: var(--pf-ink-secondary);
+  font-size: clamp(15px, 1.15vw, 17px);
+  line-height: 1.6;
+}
+
+.pf-scroll-scrub .scroll-scrub__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.pf-scroll-scrub .scroll-scrub__tag {
+  padding: 5px 10px;
+  background: var(--pf-plaster);
+  border: 1px solid var(--pf-line);
+  color: var(--pf-ink);
+  font-family: var(--pf-mono);
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.pf-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.pf-button {
+  display: inline-flex;
+  min-height: 46px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
+  border: 1px solid var(--pf-ink);
+  text-decoration: none;
+  font-family: var(--pf-body);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  transition: transform 160ms ease, color 160ms ease, background-color 160ms ease;
+}
+
+.pf-button:hover {
+  transform: translateY(-1px);
+}
+
+.pf-button-primary {
+  color: var(--pf-surface-brand);
+  background-color: var(--pf-ink);
+}
+
+.pf-button-primary:hover {
+  background-color: var(--pf-mineral);
+  border-color: var(--pf-mineral);
+}
+
+.pf-button-quiet {
+  color: var(--pf-ink);
+  background-color: var(--pf-surface-brand);
+}
+
+.pf-button-quiet:hover {
+  background-color: var(--pf-plaster);
+}
+
+.pf-hero-bottom-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px clamp(20px, 4vw, 56px);
+  background-color: var(--pf-dark);
+  color: var(--pf-paper);
+  border-top: 1px solid var(--pf-line-light);
+}
+
+.pf-hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--pf-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: #c8d0ca;
+}
+
+.pf-hero-sep {
+  color: var(--pf-accent);
+}
+
+.pf-hero-skip {
+  color: var(--pf-paper);
+  font-family: var(--pf-mono);
+  font-size: 11px;
+  text-decoration: none;
+  padding-bottom: 2px;
+  border-bottom: 1px solid var(--pf-accent);
+}
+
+/* --------------------------------------------------------------------------
+   02. CONTRACTOR DISCIPLINE & 5-LAYER WALL SYSTEM CUTAWAY
+   -------------------------------------------------------------------------- */
+.pf-approach {
+  padding: clamp(76px, 9vw, 132px) clamp(20px, 5vw, 80px);
+  background-color: var(--pf-paper);
+  border-top: 1px solid var(--pf-line);
+}
+
+.pf-approach-top {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: clamp(28px, 5vw, 72px);
+  align-items: start;
+  margin-bottom: clamp(48px, 6vw, 80px);
+}
+
+.pf-approach-meta {
+  grid-column: 1 / -1;
+}
+
+.pf-role-pill-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.pf-role-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 13px;
+  background-color: var(--pf-plaster);
+  border: 1px solid var(--pf-line-strong);
+  font-family: var(--pf-mono);
+  font-size: 11px;
+  color: var(--pf-ink);
+}
+
+.pf-role-pill--primary {
+  background-color: var(--pf-mineral);
+  border-color: var(--pf-mineral);
+  color: var(--pf-surface-brand);
+}
+
+.pf-approach-headline h2,
+.pf-section-heading h2,
+.pf-material-reference-header h2,
+.pf-projects-heading h2,
+.pf-contact-heading h2,
+.pf-3d-header h2 {
+  margin: 0;
+  font-family: var(--pf-display);
+  font-size: clamp(38px, 4.6vw, 66px);
+  font-weight: 600;
+  line-height: 0.98;
+  letter-spacing: -0.025em;
+}
+
+.pf-approach-lead p {
+  margin: 0 0 16px;
+  color: var(--pf-ink-secondary);
+  font-size: 15px;
+  line-height: 1.72;
+}
+
+.pf-strata-workbench {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: clamp(28px, 4vw, 56px);
+  padding-top: clamp(32px, 4vw, 48px);
+  border-top: 1px solid var(--pf-line);
+  align-items: start;
+}
+
+.pf-strata-visual {
+  display: grid;
+  gap: 20px;
+}
+
+.pf-strata-image-frame {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--pf-line-strong);
+  background-color: var(--pf-plaster);
+  aspect-ratio: 16 / 9;
+}
+
+.pf-strata-image-frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pf-strata-badge {
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 10px 14px;
+  background-color: rgba(18, 22, 20, 0.88);
+  color: var(--pf-paper);
+  border: 1px solid var(--pf-line-light);
+}
+
+.pf-strata-badge span {
+  font-family: var(--pf-mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  color: #e0a88b;
+}
+
+.pf-strata-badge strong {
+  font-size: 13px;
+}
+
+.pf-strata-active-card {
+  padding: 24px;
+  background-color: var(--pf-surface-brand);
+  border: 1px solid var(--pf-line-strong);
+}
+
+.pf-strata-active-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.pf-mono-tag {
+  display: inline-block;
+  padding: 4px 9px;
+  background-color: var(--pf-ink);
+  color: var(--pf-surface-brand);
+  font-family: var(--pf-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+}
+
+.pf-mono-spec {
+  font-family: var(--pf-mono);
+  font-size: 11px;
+  color: var(--pf-accent);
+  font-weight: 500;
+}
+
+.pf-strata-active-card h3 {
+  margin: 0 0 10px;
+  font-family: var(--pf-display);
+  font-size: clamp(24px, 2.4vw, 32px);
+  font-weight: 600;
+}
+
+.pf-strata-active-card p {
+  margin: 0 0 14px;
+  color: var(--pf-ink-secondary);
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.pf-strata-tools {
+  padding-top: 12px;
+  border-top: 1px solid var(--pf-line);
+  font-size: 12px;
+  color: var(--pf-muted);
+}
+
+.pf-strata-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.pf-strata-selector-title {
+  margin: 0 0 6px;
+  font-family: var(--pf-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--pf-muted);
+}
+
+.pf-strata-btn {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr) 20px;
+  gap: 14px;
+  align-items: center;
+  width: 100%;
+  padding: 16px 18px;
+  text-align: left;
+  background-color: var(--pf-plaster);
+  border: 1px solid var(--pf-line);
+  color: var(--pf-ink);
+  cursor: pointer;
+  transition: background-color 150ms ease, border-color 150ms ease;
+}
+
+.pf-strata-btn:hover {
+  background-color: var(--pf-surface-brand);
+  border-color: var(--pf-line-strong);
+}
+
+.pf-strata-btn--active {
+  background-color: var(--pf-surface-brand);
+  border-color: var(--pf-accent);
+  box-shadow: inset 4px 0 0 var(--pf-accent);
+}
+
+.pf-strata-btn-num {
+  font-family: var(--pf-mono);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--pf-accent);
+}
+
+.pf-strata-btn-body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.pf-strata-btn-body strong {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.pf-strata-btn-body small {
+  font-family: var(--pf-mono);
+  font-size: 11px;
+  color: var(--pf-muted);
+}
+
+.pf-strata-btn-ind {
+  color: var(--pf-accent);
+  font-size: 14px;
+  text-align: right;
+}
+
+/* --------------------------------------------------------------------------
+   03. INTERACTIVE 3D SURFACE & GRAZING-LIGHT WORKBENCH
+   -------------------------------------------------------------------------- */
+.pf-3d-explorer {
+  padding: clamp(76px, 9vw, 128px) clamp(20px, 5vw, 80px);
+  background-color: var(--pf-dark);
+  color: var(--pf-paper);
+  border-top: 1px solid var(--pf-line-light);
+}
+
+.pf-3d-header {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: clamp(24px, 5vw, 64px);
+  align-items: end;
+  margin-bottom: 40px;
+}
+
+.pf-3d-header h2 {
+  color: var(--pf-paper);
+}
+
+.pf-3d-header-lead {
+  margin: 0;
+  color: #c5cdc7;
+  font-size: 15px;
+  line-height: 1.68;
+}
+
+.pf-3d-grid {
+  display: grid;
+  grid-template-columns: 1.22fr 0.78fr;
+  gap: clamp(24px, 3.5vw, 44px);
+  align-items: start;
+}
+
+.pf-model-stage {
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--pf-line-light);
+  background: radial-gradient(circle at 50% 35%, #232c27 0%, #121614 78%);
+}
+
+.pf-model-viewer {
+  display: block;
+  width: 100%;
+  height: clamp(420px, 48vw, 640px);
+  background-color: transparent;
+  --poster-color: #121614;
+  --progress-bar-color: #9e5a3c;
+  --progress-mask: rgba(18, 22, 20, 0.72);
+}
+
+.pf-model-top-hud {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  right: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px;
+  pointer-events: none;
+}
+
+.pf-hud-chip {
+  padding: 7px 12px;
+  background-color: rgba(18, 22, 20, 0.88);
+  border: 1px solid rgba(244, 241, 234, 0.22);
+  color: var(--pf-paper);
+  font-family: var(--pf-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+}
+
+.pf-hud-chip strong {
+  color: #e9b196;
+}
+
+.pf-model-camera-bar {
+  position: absolute;
+  left: 16px;
+  bottom: 52px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.pf-cam-btn {
+  padding: 7px 12px;
+  background-color: rgba(18, 22, 20, 0.86);
+  border: 1px solid rgba(244, 241, 234, 0.24);
+  color: #d6ddd8;
+  font-family: var(--pf-mono);
+  font-size: 11px;
+  cursor: pointer;
+  transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease;
+}
+
+.pf-cam-btn:hover,
+.pf-cam-btn--active {
+  background-color: var(--pf-accent);
+  border-color: var(--pf-accent);
+  color: var(--pf-surface-brand);
+}
+
+.pf-model-hint {
+  position: absolute;
+  left: 16px;
+  bottom: 14px;
+  padding: 6px 12px;
+  background-color: rgba(18, 22, 20, 0.9);
+  border: 1px solid rgba(244, 241, 234, 0.2);
+  color: var(--pf-paper);
+  font-family: var(--pf-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
+.pf-3d-console {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 24px;
+  background-color: var(--pf-dark-elevated);
+  border: 1px solid var(--pf-line-light);
+}
+
+.pf-console-block {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.pf-console-label {
+  font-family: var(--pf-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #e0a88b;
+}
+
+.pf-preset-list {
+  display: grid;
+  gap: 8px;
+}
+
+.pf-preset-btn {
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr);
+  gap: 12px;
+  align-items: center;
+  padding: 11px 13px;
+  text-align: left;
+  background-color: rgba(244, 241, 234, 0.04);
+  border: 1px solid rgba(244, 241, 234, 0.14);
+  color: var(--pf-paper);
+  cursor: pointer;
+  transition: background-color 150ms ease, border-color 150ms ease;
+}
+
+.pf-preset-btn:hover {
+  background-color: rgba(244, 241, 234, 0.09);
+}
+
+.pf-preset-btn--active {
+  background-color: rgba(158, 90, 60, 0.22);
+  border-color: #e0a88b;
+}
+
+.pf-swatch {
+  display: block;
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(244, 241, 234, 0.35);
+}
+
+.pf-swatch--travertino {
+  background: linear-gradient(135deg, #e5dec9 0%, #c9bca3 100%);
+}
+
+.pf-swatch--concrete {
+  background: linear-gradient(135deg, #adb2ad 0%, #7d827d 100%);
+}
+
+.pf-swatch--sandstone {
+  background: linear-gradient(135deg, #cf9d7b 0%, #9e5a3c 100%);
+}
+
+.pf-swatch--microcement {
+  background: linear-gradient(135deg, #d6d1c6 0%, #aba598 100%);
+}
+
+.pf-preset-btn-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.pf-preset-btn-copy small {
+  font-family: var(--pf-mono);
+  font-size: 10px;
+  color: #e0a88b;
+}
+
+.pf-preset-btn-copy strong {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.pf-preset-btn-copy span {
+  font-size: 11px;
+  color: #aeb8b1;
+}
+
+.pf-slider-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.pf-slider-readout {
+  font-family: var(--pf-mono);
+  font-size: 12px;
+  color: var(--pf-paper);
+}
+
+.pf-light-range {
+  width: 100%;
+  accent-color: var(--pf-accent);
+  cursor: pointer;
+}
+
+.pf-light-quick-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+}
+
+.pf-light-chip {
+  padding: 6px 6px;
+  background-color: rgba(244, 241, 234, 0.05);
+  border: 1px solid rgba(244, 241, 234, 0.14);
+  color: #c5cdc7;
+  font-family: var(--pf-mono);
+  font-size: 10px;
+  cursor: pointer;
+}
+
+.pf-light-chip--active {
+  background-color: var(--pf-paper);
+  color: var(--pf-dark);
+  border-color: var(--pf-paper);
+  font-weight: 600;
+}
+
+.pf-console-spec-card {
+  padding-top: 14px;
+  border-top: 1px solid var(--pf-line-light);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.pf-console-spec-row {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.pf-console-spec-row span {
+  font-family: var(--pf-mono);
+  font-size: 10px;
+  color: #9aa59e;
+  text-transform: uppercase;
+}
+
+.pf-console-spec-row strong {
+  font-size: 12px;
+  color: var(--pf-paper);
+}
+
+.pf-console-spec-summary {
+  margin: 2px 0;
+  font-size: 13px;
+  line-height: 1.58;
+  color: #c5cdc7;
+}
+
+.pf-console-cta {
+  padding: 13px 16px;
+  background-color: var(--pf-accent);
+  border: 1px solid var(--pf-accent);
+  color: var(--pf-surface-brand);
+  font-family: var(--pf-body);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 150ms ease;
+}
+
+.pf-console-cta:hover {
+  background-color: #b56847;
+}
+
+/* --------------------------------------------------------------------------
+   04. CURATED FINISH PORTFOLIO & SHADE CARD EVIDENCE
+   -------------------------------------------------------------------------- */
+.pf-finishes {
+  padding: clamp(76px, 9vw, 132px) clamp(20px, 5vw, 80px);
+  background-color: var(--pf-plaster);
+  border-top: 1px solid var(--pf-line);
+}
+
+.pf-section-heading {
+  max-width: 780px;
+  margin-bottom: 48px;
+}
+
+.pf-section-intro {
+  max-width: 58ch;
+  margin: 18px 0 0;
+  color: var(--pf-ink-secondary);
+  font-size: 16px;
+  line-height: 1.66;
+}
+
+.pf-finish-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 32px;
+}
+
+.pf-finish-card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--pf-surface-brand);
+  border: 1px solid var(--pf-line-strong);
+  overflow: hidden;
+}
+
+.pf-finish-image {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background-color: var(--pf-stone);
+}
+
+.pf-finish-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 600ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.pf-finish-card:hover .pf-finish-image img {
+  transform: scale(1.03);
+}
+
+.pf-finish-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  padding: 5px 10px;
+  background-color: rgba(18, 22, 20, 0.88);
+  color: var(--pf-paper);
+  border: 1px solid rgba(244, 241, 234, 0.24);
+  font-family: var(--pf-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+}
+
+.pf-finish-zone-tag {
+  position: absolute;
+  bottom: 14px;
+  right: 14px;
+  padding: 5px 10px;
+  background-color: rgba(244, 241, 234, 0.94);
+  color: var(--pf-ink);
+  border: 1px solid var(--pf-line-strong);
+  font-family: var(--pf-mono);
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.pf-finish-copy {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 24px;
+}
+
+.pf-finish-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--pf-line);
+}
+
+.pf-finish-supplier {
+  font-family: var(--pf-mono);
+  font-size: 11px;
+  color: var(--pf-accent);
+  font-weight: 500;
+}
+
+.pf-finish-codes {
+  font-family: var(--pf-mono);
+  font-size: 11px;
+  color: var(--pf-muted);
+}
+
+.pf-finish-copy h3 {
+  margin: 0;
+  font-family: var(--pf-display);
+  font-size: clamp(24px, 2.3vw, 32px);
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.pf-finish-copy p {
+  margin: 10px 0 20px;
+  color: var(--pf-ink-secondary);
+  font-size: 14px;
+  line-height: 1.64;
+  flex: 1;
+}
+
+.pf-finish-select-btn {
+  align-self: flex-start;
+  padding: 10px 15px;
+  background-color: var(--pf-paper);
+  border: 1px solid var(--pf-ink);
+  color: var(--pf-ink);
+  font-family: var(--pf-body);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 150ms ease, color 150ms ease;
+}
+
+.pf-finish-select-btn:hover {
+  background-color: var(--pf-ink);
+  color: var(--pf-surface-brand);
+}
+
+.pf-shade-evidence {
+  margin-top: 56px;
+  padding: 36px;
+  background-color: var(--pf-surface-brand);
+  border: 1px solid var(--pf-line-strong);
+  display: grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  gap: 36px;
+  align-items: center;
+}
+
+.pf-shade-evidence-copy h3 {
+  margin: 0 0 14px;
+  font-family: var(--pf-display);
+  font-size: clamp(28px, 3vw, 40px);
+  font-weight: 600;
+  line-height: 1.05;
+}
+
+.pf-shade-evidence-copy p {
+  margin: 0 0 22px;
+  color: var(--pf-ink-secondary);
+  font-size: 14px;
+  line-height: 1.68;
+}
+
+.pf-shade-evidence-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.pf-evidence-figure {
+  margin: 0;
+  border: 1px solid var(--pf-line-strong);
+  background-color: var(--pf-paper);
+  overflow: hidden;
+}
+
+.pf-evidence-figure img {
+  display: block;
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.pf-evidence-figure figcaption {
+  padding: 12px 14px;
+  border-top: 1px solid var(--pf-line);
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.pf-evidence-figure figcaption strong {
+  font-size: 13px;
+}
+
+.pf-evidence-figure figcaption span {
+  font-family: var(--pf-mono);
+  font-size: 10px;
+  color: var(--pf-muted);
+}
+
+/* --------------------------------------------------------------------------
+   05. SUPPLIER & MATERIAL SYSTEMS SCHEDULE (15 CATALOGUES)
+   -------------------------------------------------------------------------- */
+.pf-material-reference {
+  padding: clamp(76px, 9vw, 132px) clamp(20px, 5vw, 80px);
+  background-color: var(--pf-paper);
+  border-top: 1px solid var(--pf-line);
+}
+
+.pf-material-reference-header {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: clamp(24px, 5vw, 64px);
+  align-items: end;
+  margin-bottom: 32px;
+}
+
+.pf-material-reference-intro {
+  margin: 0;
+  color: var(--pf-ink-secondary);
+  font-size: 15px;
+  line-height: 1.68;
+}
+
+.pf-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.pf-filter-pill {
+  padding: 9px 15px;
+  background-color: var(--pf-plaster);
+  border: 1px solid var(--pf-line-strong);
+  color: var(--pf-ink);
+  font-family: var(--pf-mono);
+  font-size: 11px;
+  cursor: pointer;
+  transition: background-color 150ms ease, color 150ms ease;
+}
+
+.pf-filter-pill--active,
+.pf-filter-pill:hover {
+  background-color: var(--pf-ink);
+  border-color: var(--pf-ink);
+  color: var(--pf-surface-brand);
+}
+
+.pf-filter-pill--dark {
+  background-color: rgba(244, 241, 234, 0.06);
+  border-color: rgba(244, 241, 234, 0.2);
+  color: #d0d7d2;
+}
+
+.pf-filter-pill--dark-active,
+.pf-filter-pill--dark:hover {
+  background-color: var(--pf-accent);
+  border-color: var(--pf-accent);
+  color: var(--pf-surface-brand);
+}
+
+.pf-catalogue-accordion {
+  border-top: 1px solid var(--pf-line-strong);
+}
+
+.pf-catalogue-row {
+  border-bottom: 1px solid var(--pf-line-strong);
+  background-color: var(--pf-paper);
+}
+
+.pf-catalogue-row--open {
+  background-color: var(--pf-surface-brand);
+}
+
+.pf-catalogue-trigger {
+  display: grid;
+  grid-template-columns: 72px minmax(0, 1.4fr) minmax(140px, 0.6fr) 32px;
+  gap: 16px;
+  align-items: center;
+  width: 100%;
+  padding: 18px 16px;
+  background: transparent;
+  border: none;
+  color: var(--pf-ink);
+  text-align: left;
+  cursor: pointer;
+}
+
+.pf-catalogue-code {
+  font-family: var(--pf-mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--pf-accent);
+}
+
+.pf-catalogue-main {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.pf-catalogue-main strong {
+  font-family: var(--pf-display);
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.pf-catalogue-main small {
+  font-size: 12px;
+  color: var(--pf-muted);
+}
+
+.pf-catalogue-cat {
+  font-family: var(--pf-mono);
+  font-size: 11px;
+  color: var(--pf-ink-secondary);
+}
+
+.pf-catalogue-toggle {
+  font-family: var(--pf-mono);
+  font-size: 18px;
+  color: var(--pf-accent);
+  text-align: right;
+}
+
+.pf-catalogue-details {
+  padding: 4px 16px 22px 88px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.pf-catalogue-spec-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  padding: 14px;
+  background-color: var(--pf-paper);
+  border: 1px solid var(--pf-line);
+}
+
+.pf-catalogue-spec-grid div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.pf-catalogue-spec-grid span {
+  font-family: var(--pf-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  color: var(--pf-muted);
+}
+
+.pf-catalogue-spec-grid strong {
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.pf-catalogue-summary {
+  margin: 0;
+  color: var(--pf-ink-secondary);
+  font-size: 14px;
+  line-height: 1.62;
+}
+
+.pf-catalogue-action {
+  align-self: flex-start;
+  padding: 9px 14px;
+  background-color: var(--pf-mineral);
+  color: var(--pf-surface-brand);
+  border: 1px solid var(--pf-mineral);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* --------------------------------------------------------------------------
+   06. EXECUTED PROJECT REFERENCE REGISTER (14 PROJECTS)
+   -------------------------------------------------------------------------- */
+.pf-projects {
+  padding: clamp(76px, 9vw, 132px) clamp(20px, 5vw, 80px);
+  background-color: var(--pf-dark);
+  color: var(--pf-paper);
+}
+
+.pf-projects-heading {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: clamp(24px, 5vw, 64px);
+  align-items: end;
+  margin-bottom: 40px;
+}
+
+.pf-projects-heading h2 {
+  color: var(--pf-paper);
+}
+
+.pf-projects-lead {
+  margin: 0;
+  color: #c5cdc7;
+  font-size: 15px;
+  line-height: 1.68;
+}
+
+.pf-project-spotlight-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+  margin-bottom: 44px;
+}
+
+.pf-spotlight-card {
+  background-color: var(--pf-dark-elevated);
+  border: 1px solid var(--pf-line-light);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.pf-spotlight-img-wrap {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background-color: #0d100f;
+}
+
+.pf-spotlight-img-wrap img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pf-spotlight-idx {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  padding: 4px 9px;
+  background-color: rgba(18, 22, 20, 0.9);
+  border: 1px solid rgba(244, 241, 234, 0.25);
+  color: #e0a88b;
+  font-family: var(--pf-mono);
+  font-size: 10px;
+}
+
+.pf-spotlight-body {
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+
+.pf-spotlight-type {
+  font-family: var(--pf-mono);
+  font-size: 10px;
+  color: #e0a88b;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.pf-spotlight-body h3 {
+  margin: 0;
+  font-family: var(--pf-display);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--pf-paper);
+}
+
+.pf-spotlight-body p {
+  margin: 4px 0 8px;
+  font-size: 13px;
+  line-height: 1.55;
+  color: #bdc6c0;
+  flex: 1;
+}
+
+.pf-spotlight-scope {
+  padding-top: 10px;
+  border-top: 1px solid var(--pf-line-light);
+  font-size: 11px;
+  color: #98a49c;
+}
+
+.pf-project-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.pf-project-row {
+  padding: 20px 22px;
+  background-color: var(--pf-dark-elevated);
+  border: 1px solid var(--pf-line-light);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pf-project-row-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.pf-project-no {
+  font-family: var(--pf-mono);
+  font-size: 11px;
+  color: #e0a88b;
+}
+
+.pf-project-tag {
+  font-family: var(--pf-mono);
+  font-size: 10px;
+  color: #a4b0a8;
+  text-transform: uppercase;
+}
+
+.pf-project-row h3 {
+  margin: 0;
+  font-family: var(--pf-display);
+  font-size: 23px;
+  font-weight: 600;
+  color: var(--pf-paper);
+  line-height: 1.18;
+}
+
+.pf-project-context {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.56;
+  color: #bbc4be;
+}
+
+.pf-project-footer {
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid rgba(244, 241, 234, 0.1);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.pf-project-scope {
+  font-family: var(--pf-mono);
+  font-size: 11px;
+  color: #95a299;
+}
+
+.pf-project-enquire-btn {
+  padding: 6px 11px;
+  background-color: transparent;
+  border: 1px solid rgba(244, 241, 234, 0.28);
+  color: var(--pf-paper);
+  font-family: var(--pf-mono);
+  font-size: 10px;
+  cursor: pointer;
+  transition: background-color 150ms ease, border-color 150ms ease;
+}
+
+.pf-project-enquire-btn:hover {
+  background-color: var(--pf-accent);
+  border-color: var(--pf-accent);
+}
+
+.pf-projects-disclaimer {
+  margin: 28px 0 0;
+  font-size: 12px;
+  color: #95a299;
+  line-height: 1.6;
+}
+
+/* --------------------------------------------------------------------------
+   07. ARCHITECTURAL SPECIFICATION & SITE CONSULTATION DESK
+   -------------------------------------------------------------------------- */
+.pf-contact {
+  display: grid;
+  grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.12fr);
+  gap: clamp(36px, 6vw, 84px);
+  padding: clamp(76px, 9vw, 132px) clamp(20px, 5vw, 80px);
+  background-color: var(--pf-paper);
+  border-top: 1px solid var(--pf-line);
+}
+
+.pf-contact-heading > p {
+  max-width: 46ch;
+  margin: 18px 0 28px;
+  color: var(--pf-ink-secondary);
+  font-size: 15px;
+  line-height: 1.68;
+}
+
+.pf-contact-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.pf-contact-card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 18px 20px;
+  background-color: var(--pf-surface-brand);
+  border: 1px solid var(--pf-line-strong);
+  color: var(--pf-ink);
+  text-decoration: none;
+  transition: border-color 150ms ease, transform 150ms ease;
+}
+
+.pf-contact-card:hover {
+  border-color: var(--pf-accent);
+  transform: translateY(-1px);
+}
+
+.pf-contact-card--static:hover {
+  border-color: var(--pf-line-strong);
+  transform: none;
+}
+
+.pf-contact-card-label {
+  font-family: var(--pf-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--pf-accent);
+}
+
+.pf-contact-card strong {
+  font-family: var(--pf-display);
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.pf-contact-card-action {
+  font-family: var(--pf-mono);
+  font-size: 11px;
+  color: var(--pf-mineral);
+  font-weight: 500;
+}
+
+.pf-contact-card-sub {
+  font-size: 12px;
+  color: var(--pf-muted);
+}
+
+.pf-enquiry-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  padding: 32px;
+  background-color: var(--pf-surface-brand);
+  border: 1px solid var(--pf-line-strong);
+  align-content: start;
+}
+
+.pf-form-header {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--pf-line);
+  font-family: var(--pf-mono);
+  font-size: 11px;
+  color: var(--pf-muted);
+}
+
+.pf-enquiry-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  color: var(--pf-ink);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.pf-enquiry-form input,
+.pf-enquiry-form select,
+.pf-enquiry-form textarea {
+  width: 100%;
+  min-height: 46px;
+  border: 1px solid var(--pf-line-strong);
+  border-radius: 0;
+  background-color: var(--pf-paper);
+  color: var(--pf-ink);
+  font-family: var(--pf-body);
+  font-size: 14px;
+  padding: 10px 13px;
+}
+
+.pf-enquiry-form textarea {
+  resize: vertical;
+  min-height: 110px;
+}
+
+.pf-enquiry-form input:focus,
+.pf-enquiry-form select:focus,
+.pf-enquiry-form textarea:focus {
+  border-color: var(--pf-accent);
+  outline: 2px solid rgba(158, 90, 60, 0.2);
+}
+
+.pf-form-wide,
+.pf-form-note {
+  grid-column: 1 / -1;
+}
+
+.pf-form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.pf-submit {
+  display: inline-flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 0 20px;
+  border: 1px solid var(--pf-ink);
+  background-color: var(--pf-ink);
+  color: var(--pf-surface-brand);
+  font-family: var(--pf-body);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 150ms ease, border-color 150ms ease;
+}
+
+.pf-submit:hover {
+  background-color: var(--pf-accent);
+  border-color: var(--pf-accent);
+}
+
+.pf-submit--whatsapp {
+  background-color: var(--pf-mineral);
+  border-color: var(--pf-mineral);
+}
+
+.pf-submit--copy {
+  background-color: var(--pf-paper);
+  color: var(--pf-ink);
+}
+
+.pf-submit--copy:hover {
+  background-color: var(--pf-plaster);
+  border-color: var(--pf-ink);
+  color: var(--pf-ink);
+}
+
+.pf-form-note {
+  margin: 0;
+  color: var(--pf-muted);
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+/* --------------------------------------------------------------------------
+   08. ARCHITECTURAL FOOTER WITH PURE WHITE BRAND BADGE
+   -------------------------------------------------------------------------- */
+.pf-footer {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 32px;
+  padding: 36px clamp(20px, 5vw, 80px);
+  background-color: var(--pf-plaster);
+  border-top: 1px solid var(--pf-line-strong);
+}
+
+.pf-footer-brand-card {
+  display: inline-flex;
+  align-items: center;
+  padding: 14px 20px;
+  background-color: var(--pf-surface-brand);
+  border: 1px solid var(--pf-line-strong);
+}
+
+.pf-footer-logo {
+  display: block;
+  height: 52px;
+  width: auto;
+  max-width: 240px;
+  object-fit: contain;
+}
+
+.pf-footer-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.pf-footer-title {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--pf-ink);
+}
+
+.pf-footer-disclaimer {
+  margin: 0;
+  max-width: 68ch;
+  font-size: 11px;
+  line-height: 1.55;
+  color: var(--pf-muted);
+}
+
+.pf-footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 18px;
+}
+
+.pf-footer-links a {
+  color: var(--pf-ink);
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.pf-back-top {
+  padding: 8px 12px;
+  background-color: var(--pf-surface-brand);
+  border: 1px solid var(--pf-line-strong);
+}
+
+/* --------------------------------------------------------------------------
+   RESPONSIVE BREAKPOINTS (TABLET & MOBILE 390x844)
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .pf-3d-grid,
+  .pf-strata-workbench,
+  .pf-shade-evidence,
+  .pf-contact {
+    grid-template-columns: 1fr;
+  }
+
+  .pf-project-spotlight-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 900px) {
+  .pf-header {
+    min-height: 66px;
+    padding-inline: 16px;
+  }
+
+  .pf-brand-logo {
+    height: 38px;
+  }
+
+  .pf-nav {
+    display: none;
+  }
+
+  .pf-mobile-menu-btn {
+    display: inline-flex;
+  }
+
+  .pf-scroll-scrub .scroll-scrub__copy {
+    width: min(36rem, 90vw);
+  }
+
+  .pf-approach-top,
+  .pf-3d-header,
+  .pf-material-reference-header,
+  .pf-projects-heading {
+    grid-template-columns: 1fr;
+  }
+
+  .pf-finish-grid,
+  .pf-project-list {
+    grid-template-columns: 1fr;
+  }
+
+  .pf-catalogue-trigger {
+    grid-template-columns: 58px minmax(0, 1fr) 28px;
+  }
+
+  .pf-catalogue-cat {
+    display: none;
+  }
+
+  .pf-catalogue-details {
+    padding-left: 16px;
+  }
+
+  .pf-catalogue-spec-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pf-footer {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 620px) {
+  .pf-header-cta {
+    display: none;
+  }
+
+  .pf-scroll-scrub .scroll-scrub__chapter-pin {
+    align-items: flex-end;
+    padding: 0 16px 84px;
+  }
+
+  .pf-scroll-scrub .scroll-scrub__copy {
+    width: 100%;
+    padding: 20px;
+  }
+
+  .pf-scroll-scrub .scroll-scrub__title {
+    font-size: clamp(34px, 10vw, 48px);
+  }
+
+  .pf-model-viewer {
+    height: 390px;
+  }
+
+  .pf-light-quick-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .pf-shade-evidence {
+    padding: 22px;
+  }
+
+  .pf-shade-evidence-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .pf-enquiry-form {
+    grid-template-columns: 1fr;
+    padding: 22px 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .pf-button,
+  .pf-nav a,
+  .pf-header-cta,
+  .pf-finish-image img,
+  .pf-submit {
+    transition: none;
+  }
+  .pf-button:hover,
+  .pf-finish-card:hover .pf-finish-image img,
+  .pf-submit:hover {
+    transform: none;
+  }
+}

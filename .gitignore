@@ -1,0 +1,9 @@
+# Supplier catalogue PDFs (228 MB, read-only source material — not modified by development)
+documents/
+node_modules/
+.DS_Store
+app/.output/
+app/dist/
+app/.tanstack/
+app/.nitro/
+app/.wrangler/
