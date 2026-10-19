@@ -440,6 +440,41 @@ export function ScrollScrub({
         segment.layer.style.opacity = String(opacity);
         segment.layer.style.zIndex = index === currentIndex ? "2" : "1";
 
+        const layerScale = reduceMotion ? 1 : 1 + local * 0.045;
+        segment.layer.style.setProperty(
+          "--ss-layer-scale",
+          layerScale.toFixed(4)
+        );
+
+        if (segment.kind === "scene") {
+          let copyOpacity = 1;
+          let copyShift = 0;
+          if (!reduceMotion) {
+            const isFirst = segment.sectionIndex === 0;
+            const isLast = segment.sectionIndex === scenes.length - 1;
+            const enterWindow = 0.18;
+            const exitStart = 0.82;
+
+            if (!isFirst && local < enterWindow) {
+              const t = smoothstep(local / enterWindow);
+              copyOpacity = 0.14 + 0.86 * t;
+              copyShift = (1 - t) * 22;
+            } else if (!isLast && local > exitStart) {
+              const t = smoothstep((local - exitStart) / (1 - exitStart));
+              copyOpacity = 1 - 0.82 * t;
+              copyShift = -16 * t;
+            }
+          }
+          segment.band.style.setProperty(
+            "--ss-copy-opacity",
+            copyOpacity.toFixed(3)
+          );
+          segment.band.style.setProperty(
+            "--ss-copy-shift",
+            `${copyShift.toFixed(1)}px`
+          );
+        }
+
         if (
           y > segment.start - 1.5 * viewportHeight &&
           y < segment.end + 1.5 * viewportHeight
@@ -573,9 +608,12 @@ export function ScrollScrub({
         unloadClip(segment);
         segment.layer.style.removeProperty("opacity");
         segment.layer.style.removeProperty("z-index");
+        segment.layer.style.removeProperty("--ss-layer-scale");
+        segment.band.style.removeProperty("--ss-copy-opacity");
+        segment.band.style.removeProperty("--ss-copy-shift");
       }
     };
-  }, [segments]);
+  }, [segments, scenes.length]);
 
   if (scenes.length === 0) {
     return null;

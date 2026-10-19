@@ -1969,6 +1969,480 @@ body {
 }
 
 /* --------------------------------------------------------------------------
+   ACTIVE NAV, ILLUSTRATIVE STUDY TAG, SHADE LEDGER, PROJECT METRICS & BRIEF PREVIEW
+   -------------------------------------------------------------------------- */
+.pf-nav a.pf-nav-link--active {
+  color: var(--pf-ink);
+  position: relative;
+}
+
+.pf-nav a.pf-nav-link--active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  height: 2px;
+  background-color: var(--pf-accent);
+}
+
+.pf-finish-study-tag {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 10px;
+  background-color: rgba(18, 22, 20, 0.86);
+  color: var(--pf-paper);
+  border: 1px solid rgba(244, 241, 234, 0.28);
+  font-family: var(--pf-mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  backdrop-filter: blur(6px);
+}
+
+.pf-shade-ledger-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.pf-shade-ledger-item {
+  display: grid;
+  gap: 10px;
+  padding: 20px;
+  background-color: var(--pf-paper);
+  border: 1px solid var(--pf-line-strong);
+}
+
+.pf-shade-ledger-item strong {
+  color: var(--pf-ink);
+  font-family: var(--pf-display);
+  font-size: 21px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.pf-shade-ledger-item p {
+  margin: 0;
+  color: var(--pf-ink-secondary);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.pf-project-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-bottom: 28px;
+}
+
+.pf-project-metric-card {
+  display: grid;
+  gap: 8px;
+  padding: 22px 24px;
+  background-color: var(--pf-dark-elevated);
+  border: 1px solid var(--pf-line-light);
+}
+
+.pf-project-metric-num {
+  color: #e0a88b;
+  font-family: var(--pf-display);
+  font-size: clamp(32px, 3.2vw, 44px);
+  font-weight: 600;
+  line-height: 1;
+}
+
+.pf-project-metric-card strong {
+  color: var(--pf-paper);
+  font-family: var(--pf-display);
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.pf-project-metric-card p {
+  margin: 0;
+  color: #bbc4be;
+  font-size: 13px;
+  line-height: 1.56;
+}
+
+.pf-brief-preview {
+  grid-column: 1 / -1;
+  display: grid;
+  gap: 8px;
+  padding: 16px;
+  background-color: var(--pf-paper);
+  border: 1px solid var(--pf-line-strong);
+}
+
+.pf-brief-preview-label {
+  color: var(--pf-accent);
+  font-family: var(--pf-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.pf-brief-preview-code {
+  margin: 0;
+  padding: 12px 14px;
+  background-color: var(--pf-surface-brand);
+  border: 1px solid var(--pf-line);
+  color: var(--pf-ink);
+  font-family: var(--pf-mono);
+  font-size: 11px;
+  line-height: 1.65;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--pf-accent);
+  outline-offset: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   MASTER PROMPT 03 — ART-DIRECTION, PROPORTION & 3D WORKBENCH REFINEMENTS
+   -------------------------------------------------------------------------- */
+
+/* 1. Sticky Header Anchor Clearance */
+.pf-approach,
+.pf-3d-explorer,
+.pf-finishes,
+.pf-material-reference,
+.pf-projects,
+.pf-contact {
+  scroll-margin-top: 84px;
+}
+
+/* 2. Architectural Glass Hero Copy Plate & Chapter Switcher (Unobstructed Opening Film) */
+.pf-scroll-scrub .scroll-scrub__route {
+  top: 92px;
+  gap: 8px;
+}
+
+.pf-scroll-scrub .scroll-scrub__route-button {
+  min-height: 34px;
+  padding: 6px 12px;
+  background: rgba(18, 22, 20, 0.78);
+  border: 1px solid rgba(244, 241, 234, 0.22);
+  backdrop-filter: blur(10px);
+  color: #cfd6d1;
+  font-family: var(--pf-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.pf-scroll-scrub .scroll-scrub__route-button:hover,
+.pf-scroll-scrub .scroll-scrub__route-button[aria-current="step"] {
+  background: rgba(158, 90, 60, 0.88);
+  border-color: #e0a88b;
+  color: var(--pf-surface-brand);
+  text-decoration: none;
+}
+
+.pf-scroll-scrub .scroll-scrub__chapter-pin {
+  padding-top: clamp(5.5rem, 7.5vw, 7rem);
+  padding-bottom: clamp(2.5rem, 4vw, 3.75rem);
+  align-items: flex-end;
+}
+
+.pf-scroll-scrub .scroll-scrub__copy {
+  width: min(34rem, 40vw);
+  padding: clamp(18px, 2vw, 26px);
+  background: rgba(18, 22, 20, 0.82);
+  border: 1px solid rgba(244, 241, 234, 0.22);
+  border-left: 3px solid var(--pf-accent);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 24px 64px rgba(8, 10, 9, 0.42);
+}
+
+.pf-scroll-scrub .scroll-scrub__kicker {
+  margin: 0 0 8px;
+  color: #e0a88b;
+}
+
+.pf-scroll-scrub .scroll-scrub__title {
+  max-width: 17ch;
+  color: var(--pf-paper);
+  font-size: clamp(32px, 3.5vw, 50px);
+  line-height: 0.98;
+}
+
+.pf-scroll-scrub .scroll-scrub__body {
+  max-width: 46ch;
+  margin-top: 10px;
+  color: #d2d9d4;
+  font-size: clamp(13px, 1vw, 15px);
+  line-height: 1.54;
+}
+
+.pf-scroll-scrub .scroll-scrub__tags {
+  margin-top: 12px;
+  gap: 6px;
+}
+
+.pf-scroll-scrub .scroll-scrub__tags li,
+.pf-scroll-scrub .scroll-scrub__tag {
+  padding: 4px 9px;
+  background: rgba(244, 241, 234, 0.1);
+  border: 1px solid rgba(244, 241, 234, 0.26);
+  color: #f0ece2;
+  font-family: var(--pf-mono);
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.pf-scroll-scrub .scroll-scrub__actions,
+.pf-hero-actions {
+  margin-top: 14px;
+  gap: 10px;
+}
+
+.pf-hero .pf-button {
+  min-height: 40px;
+  padding: 0 16px;
+}
+
+.pf-hero .pf-button-primary {
+  background-color: var(--pf-accent);
+  border-color: var(--pf-accent);
+  color: var(--pf-surface-brand);
+}
+
+.pf-hero .pf-button-primary:hover {
+  background-color: #b56847;
+  border-color: #b56847;
+}
+
+.pf-hero .pf-button-quiet {
+  background-color: rgba(244, 241, 234, 0.1);
+  border-color: rgba(244, 241, 234, 0.34);
+  color: var(--pf-paper);
+}
+
+.pf-hero .pf-button-quiet:hover {
+  background-color: rgba(244, 241, 234, 0.2);
+}
+
+/* 3. Mobile Drawer Backdrop Scrim & Footer CTA */
+.pf-mobile-backdrop {
+  position: fixed;
+  inset: 0;
+  top: 66px;
+  z-index: 58;
+  background-color: rgba(12, 15, 14, 0.64);
+  backdrop-filter: blur(4px);
+}
+
+.pf-mobile-drawer-footer {
+  padding: 14px 22px 18px;
+  background-color: var(--pf-paper);
+  border-top: 1px solid var(--pf-line-strong);
+}
+
+.pf-mobile-drawer a.pf-mobile-drawer-cta {
+  justify-content: center;
+  padding: 12px 16px;
+  background-color: var(--pf-ink);
+  border: 1px solid var(--pf-ink);
+  color: var(--pf-surface-brand);
+  font-family: var(--pf-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* 4. Balanced 5-Layer Strata Columns */
+.pf-strata-workbench {
+  align-items: stretch;
+}
+
+.pf-strata-selector {
+  justify-content: space-between;
+}
+
+.pf-strata-btn {
+  flex: 1;
+}
+
+/* 5. Interactive 3D Stage Viewport, Grazing-Light Overlay & Docked Toolbar */
+.pf-model-stage {
+  display: flex;
+  flex-direction: column;
+}
+
+.pf-model-viewport {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.pf-model-raking-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  transition: background 260ms ease, opacity 260ms ease;
+  background: linear-gradient(
+    105deg,
+    rgba(233, 177, 150, 0.14) 0%,
+    transparent 42%,
+    rgba(8, 11, 10, 0.44) 100%
+  );
+}
+
+.pf-model-stage[data-light-band="raking-dusk"] .pf-model-raking-overlay {
+  background: linear-gradient(
+    96deg,
+    rgba(224, 148, 104, 0.22) 0%,
+    rgba(18, 22, 20, 0.14) 38%,
+    rgba(6, 8, 7, 0.62) 100%
+  );
+}
+
+.pf-model-stage[data-light-band="oblique-relief"] .pf-model-raking-overlay {
+  background: linear-gradient(
+    108deg,
+    rgba(233, 177, 150, 0.14) 0%,
+    transparent 46%,
+    rgba(8, 11, 10, 0.42) 100%
+  );
+}
+
+.pf-model-stage[data-light-band="gallery"] .pf-model-raking-overlay {
+  background: linear-gradient(
+    125deg,
+    rgba(244, 241, 234, 0.1) 0%,
+    transparent 58%,
+    rgba(12, 15, 14, 0.26) 100%
+  );
+}
+
+.pf-model-stage[data-light-band="high-noon"] .pf-model-raking-overlay {
+  background: linear-gradient(
+    180deg,
+    rgba(244, 241, 234, 0.12) 0%,
+    transparent 65%,
+    rgba(12, 15, 14, 0.18) 100%
+  );
+}
+
+.pf-model-stage-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px 16px;
+  padding: 12px 16px;
+  background-color: #151a17;
+  border-top: 1px solid var(--pf-line-light);
+}
+
+.pf-model-stage-footer .pf-model-camera-bar {
+  position: static;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.pf-model-stage-footer .pf-model-hint {
+  position: static;
+  padding: 0;
+  background: transparent;
+  border: none;
+  color: #9aa59e;
+  font-size: 10px;
+}
+
+/* 6. Asymmetrical Editorial Finish Feature Spreads (.pf-finish-card--wide) */
+@media (min-width: 901px) {
+  .pf-finish-card--wide {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1.16fr 0.84fr;
+    align-items: stretch;
+  }
+
+  .pf-finish-card--wide .pf-finish-image {
+    height: 100%;
+    min-height: 360px;
+    aspect-ratio: auto;
+  }
+
+  .pf-finish-card--wide .pf-finish-copy {
+    padding: 34px 36px;
+    justify-content: center;
+  }
+
+  .pf-finish-card--wide .pf-finish-copy h3 {
+    font-size: clamp(28px, 2.8vw, 38px);
+  }
+}
+
+/* 7. Featured Architectural Commission Highlight Rows (#projects) */
+.pf-project-row-main {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pf-project-featured-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 8px;
+  background-color: rgba(158, 90, 60, 0.28);
+  border: 1px solid rgba(224, 168, 139, 0.45);
+  color: #f0c3ab;
+  font-family: var(--pf-mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+@media (min-width: 901px) {
+  .pf-project-row--featured {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    align-items: center;
+    gap: 28px;
+    padding: 24px 28px;
+    background: linear-gradient(
+      90deg,
+      rgba(158, 90, 60, 0.14) 0%,
+      rgba(28, 34, 31, 0.96) 55%
+    );
+    border-color: rgba(224, 168, 139, 0.38);
+  }
+
+  .pf-project-row--featured h3 {
+    font-size: 27px;
+  }
+
+  .pf-project-row--featured .pf-project-footer {
+    margin-top: 0;
+    padding-top: 0;
+    padding-left: 24px;
+    border-top: none;
+    border-left: 1px solid rgba(244, 241, 234, 0.14);
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 14px;
+  }
+}
+
+/* --------------------------------------------------------------------------
    RESPONSIVE BREAKPOINTS (TABLET & MOBILE 390x844)
    -------------------------------------------------------------------------- */
 @media (max-width: 1024px) {
@@ -1979,12 +2453,26 @@ body {
     grid-template-columns: 1fr;
   }
 
-  .pf-project-spotlight-grid {
+  .pf-project-spotlight-grid,
+  .pf-shade-ledger-grid {
     grid-template-columns: 1fr;
+  }
+
+  .pf-project-metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (max-width: 900px) {
+  .pf-approach,
+  .pf-3d-explorer,
+  .pf-finishes,
+  .pf-material-reference,
+  .pf-projects,
+  .pf-contact {
+    scroll-margin-top: 72px;
+  }
+
   .pf-header {
     min-height: 66px;
     padding-inline: 16px;
@@ -2002,8 +2490,12 @@ body {
     display: inline-flex;
   }
 
+  .pf-scroll-scrub .scroll-scrub__route {
+    top: 76px;
+  }
+
   .pf-scroll-scrub .scroll-scrub__copy {
-    width: min(36rem, 90vw);
+    width: min(34rem, 92vw);
   }
 
   .pf-approach-top,
@@ -2045,22 +2537,70 @@ body {
     display: none;
   }
 
+  .pf-scroll-scrub .scroll-scrub__route-button {
+    min-height: 30px;
+    padding: 4px 9px;
+    font-size: 9px;
+  }
+
   .pf-scroll-scrub .scroll-scrub__chapter-pin {
     align-items: flex-end;
-    padding: 0 16px 84px;
+    padding: 0 14px 28px;
   }
 
   .pf-scroll-scrub .scroll-scrub__copy {
     width: 100%;
-    padding: 20px;
+    padding: 15px 16px;
+  }
+
+  .pf-scroll-scrub .scroll-scrub__kicker {
+    margin-bottom: 5px;
+    font-size: 10px;
   }
 
   .pf-scroll-scrub .scroll-scrub__title {
-    font-size: clamp(34px, 10vw, 48px);
+    font-size: clamp(25px, 6.8vw, 32px);
+    line-height: 1.02;
+  }
+
+  .pf-scroll-scrub .scroll-scrub__body {
+    margin-top: 7px;
+    font-size: 12.5px;
+    line-height: 1.45;
+  }
+
+  .pf-scroll-scrub .scroll-scrub__tags {
+    margin-top: 9px;
+    gap: 5px;
+  }
+
+  .pf-scroll-scrub .scroll-scrub__tags li:nth-child(n + 3) {
+    display: none;
+  }
+
+  .pf-scroll-scrub .scroll-scrub__actions,
+  .pf-hero-actions {
+    margin-top: 10px;
+    gap: 8px;
+  }
+
+  .pf-hero .pf-button {
+    min-height: 36px;
+    padding: 0 12px;
+    font-size: 11px;
   }
 
   .pf-model-viewer {
-    height: 390px;
+    height: 340px;
+  }
+
+  .pf-model-stage-footer {
+    padding: 10px 12px;
+  }
+
+  .pf-model-stage-footer .pf-cam-btn {
+    padding: 6px 9px;
+    font-size: 10px;
   }
 
   .pf-light-quick-row {
@@ -2071,13 +2611,571 @@ body {
     padding: 22px;
   }
 
-  .pf-shade-evidence-cards {
+  .pf-shade-evidence-cards,
+  .pf-project-metrics {
     grid-template-columns: 1fr;
   }
 
   .pf-enquiry-form {
     grid-template-columns: 1fr;
     padding: 22px 18px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   MASTER PROMPT 04 — CINEMATIC SCROLLYTELLING, CUTAWAY CALLOUTS & MACRO SWATCHES
+   -------------------------------------------------------------------------- */
+
+/* 1. Scene 01 Optical Camera Push-In & Reversible Chapter Copy Envelope */
+.pf-scroll-scrub .scroll-scrub__poster,
+.pf-scroll-scrub .scroll-scrub__video {
+  transform: scale(var(--ss-layer-scale, 1));
+  transform-origin: center center;
+  will-change: transform;
+}
+
+.pf-scroll-scrub .scroll-scrub__copy {
+  opacity: var(--ss-copy-opacity, 1);
+  transform: translate3d(0, var(--ss-copy-shift, 0px), 0);
+  will-change: transform, opacity;
+}
+
+.pf-hero-bottom-bar {
+  position: relative;
+  z-index: 4;
+  background: linear-gradient(180deg, #0e1210 0%, #161b18 100%);
+  border-top: 1px solid rgba(224, 168, 139, 0.28);
+  border-bottom: 2px solid var(--pf-accent);
+}
+
+/* 2. Global Exhibition Scene Rail (Zero-Overlap Margin Spine + Hover Expand) */
+.pf-scene-rail {
+  display: none;
+}
+
+@media (min-width: 1280px) {
+  .pf-scene-rail {
+    position: fixed;
+    right: 6px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 55;
+    display: flex;
+    align-items: stretch;
+    gap: 5px;
+    padding: 8px 5px;
+    background-color: rgba(18, 22, 20, 0.84);
+    border: 1px solid rgba(244, 241, 234, 0.2);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 12px 32px rgba(8, 10, 9, 0.28);
+  }
+
+  .pf-scene-rail-track {
+    position: relative;
+    width: 2px;
+    background-color: rgba(244, 241, 234, 0.16);
+    overflow: hidden;
+  }
+
+  .pf-scene-rail-fill {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: var(--pf-accent);
+    transform-origin: top center;
+    transform: scaleY(var(--pf-page-progress, 0));
+  }
+
+  .pf-scene-rail-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .pf-scene-rail-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 3px 4px;
+    text-decoration: none;
+    font-family: var(--pf-mono);
+    font-size: 9px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #9ba69f;
+    transition: color 150ms ease, background-color 150ms ease;
+  }
+
+  .pf-scene-rail-label {
+    display: none;
+    white-space: nowrap;
+  }
+
+  .pf-scene-rail:hover,
+  .pf-scene-rail:focus-within {
+    padding: 8px 9px;
+    background-color: rgba(18, 22, 20, 0.95);
+  }
+
+  .pf-scene-rail:hover .pf-scene-rail-link,
+  .pf-scene-rail:focus-within .pf-scene-rail-link {
+    justify-content: flex-start;
+    padding: 3px 6px;
+  }
+
+  .pf-scene-rail:hover .pf-scene-rail-label,
+  .pf-scene-rail:focus-within .pf-scene-rail-label {
+    display: inline;
+  }
+
+  .pf-scene-rail-link:hover {
+    color: var(--pf-paper);
+  }
+
+  .pf-scene-rail-link--active {
+    background-color: rgba(158, 90, 60, 0.36);
+    color: var(--pf-surface-brand);
+  }
+
+  .pf-scene-rail-code {
+    color: #e0a88b;
+    font-weight: 600;
+  }
+}
+
+/* 3. Reversible Scroll-Driven Section Reveals & Tactile Plate Parallax */
+[data-pf-reveal] {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition:
+    opacity 620ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 620ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+[data-pf-reveal][data-pf-state="upcoming"] {
+  opacity: 0;
+  transform: translate3d(0, 26px, 0);
+}
+
+[data-pf-parallax] img {
+  transform: translate3d(0, var(--pf-parallax-y, 0px), 0)
+    scale(var(--pf-parallax-scale, 1.03));
+  transition: transform 280ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  will-change: transform;
+}
+
+.pf-finish-card:hover [data-pf-parallax] img {
+  transform: translate3d(0, var(--pf-parallax-y, 0px), 0) scale(1.06);
+}
+
+/* 4. Interactive 5-Layer Cutaway Callout Pins & Layer Stepper (#approach) */
+.pf-strata-callouts {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.pf-strata-pin {
+  position: absolute;
+  pointer-events: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 9px;
+  background-color: rgba(18, 22, 20, 0.88);
+  border: 1px solid rgba(244, 241, 234, 0.38);
+  color: var(--pf-paper);
+  font-family: var(--pf-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.32);
+  transition:
+    transform 180ms ease,
+    background-color 180ms ease,
+    border-color 180ms ease;
+}
+
+.pf-strata-pin:hover {
+  transform: translateY(-2px);
+  border-color: #e0a88b;
+}
+
+.pf-strata-pin--active {
+  background-color: var(--pf-accent);
+  border-color: #f4d3c1;
+  color: var(--pf-surface-brand);
+  box-shadow:
+    0 0 0 3px rgba(158, 90, 60, 0.34),
+    0 10px 24px rgba(0, 0, 0, 0.42);
+}
+
+.pf-strata-pin-num {
+  font-weight: 600;
+  color: #e0a88b;
+}
+
+.pf-strata-pin--active .pf-strata-pin-num {
+  color: var(--pf-surface-brand);
+}
+
+.pf-strata-pin-label {
+  display: none;
+  max-width: 180px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-family: var(--pf-body);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.pf-strata-pin--active .pf-strata-pin-label {
+  display: inline-block;
+}
+
+.pf-strata-pin--01 {
+  top: 12%;
+  left: 12%;
+}
+.pf-strata-pin--02 {
+  top: 24%;
+  left: 27%;
+}
+.pf-strata-pin--03 {
+  top: 37%;
+  left: 42%;
+}
+.pf-strata-pin--04 {
+  top: 50%;
+  left: 56%;
+}
+.pf-strata-pin--05 {
+  top: 63%;
+  left: 70%;
+}
+
+.pf-strata-active-tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.pf-strata-stepper {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pf-strata-step-btn {
+  padding: 5px 10px;
+  background-color: var(--pf-paper);
+  border: 1px solid var(--pf-line-strong);
+  color: var(--pf-ink);
+  font-family: var(--pf-mono);
+  font-size: 10px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 150ms ease, color 150ms ease;
+}
+
+.pf-strata-step-btn:hover {
+  background-color: var(--pf-ink);
+  color: var(--pf-surface-brand);
+}
+
+/* 5. True Macro Mineral Texture Swatches & 3D Grazing-Light Compass (#surface-model & #finishes) */
+.pf-preset-btn {
+  grid-template-columns: 42px minmax(0, 1fr);
+}
+
+.pf-swatch {
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(244, 241, 234, 0.42);
+  box-shadow: inset 0 0 0 1px rgba(18, 22, 20, 0.32);
+}
+
+.pf-swatch--travertino {
+  background-color: #d7ccb8;
+  background-image:
+    linear-gradient(135deg, rgba(232, 222, 202, 0.24) 0%, rgba(168, 146, 114, 0.34) 100%),
+    url("/assets/macro-plaster.jpg");
+  background-size: 100% 100%, 260% 260%;
+  background-position: center, 25% 35%;
+}
+
+.pf-swatch--concrete {
+  background-color: #8c918c;
+  background-image:
+    linear-gradient(135deg, rgba(132, 138, 134, 0.56) 0%, rgba(74, 80, 76, 0.68) 100%),
+    url("/assets/texture-study-heritage.jpg");
+  background-size: 100% 100%, 240% 240%;
+  background-position: center, 60% 45%;
+}
+
+.pf-swatch--sandstone {
+  background-color: #b87c5a;
+  background-image:
+    linear-gradient(135deg, rgba(196, 118, 76, 0.48) 0%, rgba(142, 74, 44, 0.62) 100%),
+    url("/assets/macro-plaster.jpg");
+  background-size: 100% 100%, 280% 280%;
+  background-position: center, 75% 65%;
+}
+
+.pf-swatch--microcement {
+  background-color: #c5bfb2;
+  background-image:
+    linear-gradient(135deg, rgba(214, 209, 198, 0.45) 0%, rgba(154, 148, 136, 0.52) 100%),
+    url("/assets/texture-study-heritage.jpg");
+  background-size: 100% 100%, 220% 220%;
+  background-position: center, 20% 70%;
+}
+
+.pf-model-light-compass {
+  position: absolute;
+  right: 16px;
+  bottom: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  padding: 8px 12px;
+  background-color: rgba(18, 22, 20, 0.88);
+  border: 1px solid rgba(244, 241, 234, 0.22);
+  pointer-events: none;
+  backdrop-filter: blur(8px);
+}
+
+.pf-compass-label {
+  font-family: var(--pf-mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  color: #9aa59e;
+}
+
+.pf-compass-meter {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pf-compass-meter strong {
+  font-family: var(--pf-mono);
+  font-size: 12px;
+  color: #e0a88b;
+}
+
+.pf-compass-ray {
+  position: relative;
+  display: inline-block;
+  width: 28px;
+  height: 14px;
+  border-bottom: 1px solid rgba(244, 241, 234, 0.35);
+}
+
+.pf-compass-ray::after {
+  content: "";
+  position: absolute;
+  left: 2px;
+  bottom: 0;
+  width: 22px;
+  height: 2px;
+  background-color: #e0a88b;
+  transform-origin: left bottom;
+  transform: rotate(-35deg);
+  transition: transform 200ms ease;
+}
+
+.pf-compass-ray[data-light-deg="15"]::after {
+  transform: rotate(-15deg);
+}
+.pf-compass-ray[data-light-deg="20"]::after {
+  transform: rotate(-20deg);
+}
+.pf-compass-ray[data-light-deg="25"]::after {
+  transform: rotate(-25deg);
+}
+.pf-compass-ray[data-light-deg="30"]::after {
+  transform: rotate(-30deg);
+}
+.pf-compass-ray[data-light-deg="35"]::after {
+  transform: rotate(-35deg);
+}
+.pf-compass-ray[data-light-deg="40"]::after {
+  transform: rotate(-40deg);
+}
+.pf-compass-ray[data-light-deg="45"]::after {
+  transform: rotate(-45deg);
+}
+.pf-compass-ray[data-light-deg="50"]::after {
+  transform: rotate(-50deg);
+}
+.pf-compass-ray[data-light-deg="55"]::after {
+  transform: rotate(-55deg);
+}
+.pf-compass-ray[data-light-deg="60"]::after {
+  transform: rotate(-60deg);
+}
+.pf-compass-ray[data-light-deg="65"]::after {
+  transform: rotate(-65deg);
+}
+.pf-compass-ray[data-light-deg="70"]::after {
+  transform: rotate(-70deg);
+}
+.pf-compass-ray[data-light-deg="75"]::after {
+  transform: rotate(-75deg);
+}
+
+.pf-finish-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.pf-finish-swatch {
+  display: block;
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  border: 1px solid var(--pf-line-strong);
+}
+
+.pf-finish-meta-text {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+/* 6. Narrow Mobile (320x640), Mobile (390x844) & Tablet (768x1024) Safeguards */
+@media (max-width: 620px) {
+  .pf-scroll-scrub .scroll-scrub__route {
+    left: 12px;
+    right: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    overflow: visible;
+  }
+
+  .pf-scroll-scrub .scroll-scrub__route-button {
+    min-height: 26px;
+    padding: 3px 7px;
+    font-size: 8.5px;
+    letter-spacing: 0.05em;
+  }
+
+  .pf-strata-pin-label {
+    display: none !important;
+  }
+
+  .pf-strata-pin {
+    padding: 3px 7px;
+    font-size: 9px;
+  }
+
+  .pf-strata-pin--01 {
+    top: 10%;
+    left: 10%;
+  }
+  .pf-strata-pin--02 {
+    top: 20%;
+    left: 26%;
+  }
+  .pf-strata-pin--03 {
+    top: 30%;
+    left: 42%;
+  }
+  .pf-strata-pin--04 {
+    top: 40%;
+    left: 58%;
+  }
+  .pf-strata-pin--05 {
+    top: 50%;
+    left: 74%;
+  }
+
+  .pf-strata-badge {
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    padding: 7px 10px;
+  }
+
+  .pf-strata-badge span {
+    font-size: 8px;
+  }
+
+  .pf-strata-badge strong {
+    font-size: 11px;
+  }
+
+  .pf-model-light-compass {
+    display: none;
+  }
+}
+
+@media (max-width: 380px) {
+  .pf-header {
+    padding-inline: 10px;
+    gap: 8px;
+  }
+
+  .pf-brand-logo {
+    height: 32px;
+    max-width: 165px;
+  }
+
+  .pf-mobile-menu-btn {
+    padding: 0 9px;
+    font-size: 10px;
+  }
+
+  .pf-scroll-scrub .scroll-scrub__route {
+    left: 10px;
+    right: 10px;
+    gap: 4px;
+  }
+
+  .pf-scroll-scrub .scroll-scrub__route-button {
+    padding: 3px 6px;
+    font-size: 8px;
+    min-height: 24px;
+  }
+
+  .pf-scroll-scrub .scroll-scrub__chapter-pin {
+    padding: 0 10px 18px;
+  }
+
+  .pf-scroll-scrub .scroll-scrub__copy {
+    padding: 12px 12px;
+  }
+
+  .pf-scroll-scrub .scroll-scrub__title {
+    font-size: 22px;
+  }
+
+  .pf-hero .pf-button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .pf-catalogue-trigger {
+    grid-template-columns: 46px minmax(0, 1fr) 22px;
+    gap: 8px;
+    padding: 14px 10px;
+  }
+
+  .pf-catalogue-main strong {
+    font-size: 18px;
   }
 }
 
@@ -2089,12 +3187,24 @@ body {
   .pf-nav a,
   .pf-header-cta,
   .pf-finish-image img,
-  .pf-submit {
+  .pf-submit,
+  .pf-model-raking-overlay,
+  [data-pf-reveal],
+  [data-pf-parallax] img,
+  .pf-compass-ray::after {
     transition: none;
   }
   .pf-button:hover,
   .pf-finish-card:hover .pf-finish-image img,
-  .pf-submit:hover {
-    transform: none;
+  .pf-submit:hover,
+  .pf-scroll-scrub .scroll-scrub__poster,
+  .pf-scroll-scrub .scroll-scrub__video,
+  .pf-scroll-scrub .scroll-scrub__copy,
+  [data-pf-reveal],
+  [data-pf-reveal][data-pf-state="upcoming"],
+  [data-pf-parallax] img {
+    transform: none !important;
+    opacity: 1 !important;
   }
 }
+

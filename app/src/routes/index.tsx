@@ -50,10 +50,10 @@ const FINISH_PRESETS: readonly FinishPreset[] = [
     supplier: "Luxture Surface Coatings Pvt. Ltd.",
     catalogueRef: "Master Catalogue & Lime-N-Clay Heritage Plaster",
     swatchClass: "pf-swatch--travertino",
-    primaryRgba: [0.89, 0.85, 0.77, 1.0],
-    primaryRoughness: 0.78,
-    reliefRgba: [0.83, 0.77, 0.67, 1.0],
-    reliefRoughness: 0.72,
+    primaryRgba: [0.84, 0.79, 0.7, 1.0],
+    primaryRoughness: 0.84,
+    reliefRgba: [0.72, 0.65, 0.54, 1.0],
+    reliefRoughness: 0.76,
     applicationZones: "Interior feature walls, double-height lobbies & sheltered facades",
     summary:
       "Breathable zero-VOC slaked lime and earthen clay plaster with natural silica aggregate and hand-troweled pitting that catches oblique daylight.",
@@ -65,10 +65,10 @@ const FINISH_PRESETS: readonly FinishPreset[] = [
     supplier: "Luxture Culture Concrete & LCC Cladding",
     catalogueRef: "CULTURE CONCRETE (1).pdf & LCC catalogue A (2).pdf",
     swatchClass: "pf-swatch--concrete",
-    primaryRgba: [0.66, 0.68, 0.65, 1.0],
-    primaryRoughness: 0.66,
-    reliefRgba: [0.56, 0.58, 0.55, 1.0],
-    reliefRoughness: 0.62,
+    primaryRgba: [0.62, 0.64, 0.61, 1.0],
+    primaryRoughness: 0.72,
+    reliefRgba: [0.48, 0.5, 0.47, 1.0],
+    reliefRoughness: 0.64,
     applicationZones: "Corporate headquarters, monolithic elevations & cantilevered soffits",
     summary:
       "Mineral oxide formwork concrete and 4–6 mm lightweight linear concrete panels delivering true board-marked and fluted architectural mass without structural dead-load.",
@@ -80,10 +80,10 @@ const FINISH_PRESETS: readonly FinishPreset[] = [
     supplier: "Iconic Walls & Signature 3D Panels",
     catalogueRef: "Iconic Walls Catalogue.pdf & Signature 3D New Arrivals",
     swatchClass: "pf-swatch--sandstone",
-    primaryRgba: [0.78, 0.61, 0.48, 1.0],
-    primaryRoughness: 0.82,
-    reliefRgba: [0.71, 0.52, 0.39, 1.0],
-    reliefRoughness: 0.76,
+    primaryRgba: [0.76, 0.58, 0.44, 1.0],
+    primaryRoughness: 0.86,
+    reliefRgba: [0.62, 0.42, 0.29, 1.0],
+    reliefRoughness: 0.78,
     applicationZones: "Hospitality reception walls, staircase voids & gallery corridors",
     summary:
       "Deep-carved 12–55 mm fluted and harmonic wave relief panels in warm Agra sandstone and raw terracotta tones engineered for dramatic grazing shadows.",
@@ -95,10 +95,10 @@ const FINISH_PRESETS: readonly FinishPreset[] = [
     supplier: "Luxture Surface Coatings Pvt. Ltd.",
     catalogueRef: "Cemento 2K flooring shedcard.pdf & Decorcem Wall catalogue",
     swatchClass: "pf-swatch--microcement",
-    primaryRgba: [0.79, 0.77, 0.72, 1.0],
-    primaryRoughness: 0.38,
-    reliefRgba: [0.73, 0.71, 0.66, 1.0],
-    reliefRoughness: 0.44,
+    primaryRgba: [0.76, 0.74, 0.68, 1.0],
+    primaryRoughness: 0.42,
+    reliefRgba: [0.64, 0.61, 0.55, 1.0],
+    reliefRoughness: 0.48,
     applicationZones: "Seamless floors, wet-area bathrooms, retail galleries & minimal walls",
     summary:
       "Two-component high-abrasion microtopping floor and wall overlay sealed with aliphatic PU top-coat for joint-free architectural continuity.",
@@ -160,6 +160,7 @@ const FINISH_PORTFOLIO = [
     summary:
       "100% natural, zero-VOC slaked lime and earthen clay plasters infused with marble dust, silica sand, and natural fibres for breathable, timeless walls.",
     className: "pf-finish-card--wide",
+    swatchClass: "pf-swatch--travertino",
     serviceValue: "Lime & Heritage Plaster (Calce / Lime-N-Clay)",
   },
   {
@@ -173,6 +174,7 @@ const FINISH_PORTFOLIO = [
     summary:
       "Handcrafted troweled concrete finishes and lightweight 4–6 mm precast concrete panels with authentic tie-holes, formwork grain, and oxide patina.",
     className: "pf-finish-card--standard",
+    swatchClass: "pf-swatch--concrete",
     serviceValue: "Architectural Concrete & LCC Cladding",
   },
   {
@@ -186,6 +188,7 @@ const FINISH_PORTFOLIO = [
     summary:
       "Joint-free two-component cementitious microtopping for high-traffic floors, staircases, luxury bathrooms, and minimalist architectural volumes.",
     className: "pf-finish-card--standard",
+    swatchClass: "pf-swatch--microcement",
     serviceValue: "Cemento 2K Flooring & DecorCem Microcement",
   },
   {
@@ -199,6 +202,7 @@ const FINISH_PORTFOLIO = [
     summary:
       "Precision-carved sandstone and mineral composite 3D panels in 8 natural stone tones that transform flat walls into sculptural light-catchers.",
     className: "pf-finish-card--wide",
+    swatchClass: "pf-swatch--sandstone",
     serviceValue: "Sculpted 3D Relief Panels (Iconic Walls / Signature 3D)",
   },
   {
@@ -212,6 +216,7 @@ const FINISH_PORTFOLIO = [
     summary:
       "Weather-shielded natural stone granule coatings and flexible modified-clay stone veneers engineered for extreme UV, rain, and thermal cycling.",
     className: "pf-finish-card--standard",
+    swatchClass: "pf-swatch--concrete",
     serviceValue: "Exterior Stone Coating (Luxrock / Luxstone / Abstract)",
   },
   {
@@ -225,6 +230,7 @@ const FINISH_PORTFOLIO = [
     summary:
       "Tactile cotton-and-silk fiber interior plasters for acoustic comfort alongside monolithic stamped concrete hardscapes for driveways and plazas.",
     className: "pf-finish-card--standard",
+    swatchClass: "pf-swatch--travertino",
     serviceValue: "Dekor Plast / Stamped Concrete Hardscape",
   },
 ] as const;
@@ -447,159 +453,157 @@ type ProjectRegionFilter = "all" | "west" | "north" | "hospitality" | "commercia
 interface ProjectReference {
   index: string;
   verbatimName: string;
+  locationLabel: string;
   typology: string;
   region: Exclude<ProjectRegionFilter, "all">;
   secondaryCategory?: Exclude<ProjectRegionFilter, "all">;
-  architecturalContext: string;
-  surfaceScope: string;
-  publicImage?: string;
-  publicImageCaption?: string;
+  representativeSystems: string;
+  featured?: boolean;
 }
 
 /**
- * Exact 14 client-supplied project names preserved verbatim, enriched with
- * publicly verified architectural context.
+ * Exact 14 client-supplied project names preserved verbatim, paired with
+ * building typology and representative catalogue systems (without claiming
+ * unverified scope of work or attaching third-party photography).
  */
 const CLIENT_PROJECTS: readonly ProjectReference[] = [
   {
     index: "01",
     verbatimName: "Vogue Paradigm Builder — Santa Cruz West",
-    typology: "Luxury Residential Tower",
+    locationLabel: "Santa Cruz West, Mumbai · Western Suburbs",
+    typology: "Landmark Residential Development",
     region: "west",
-    architecturalContext:
-      "Contemporary western-suburb residential development in Santa Cruz West, Mumbai, engineered for heavy coastal monsoon exposure.",
-    surfaceScope: "Exterior weather-resilient mineral texture systems & podium lobby surfaces",
+    featured: true,
+    representativeSystems:
+      "Luxrock / Luxstone Exterior Stone Systems & Travertino Lobby Finishes",
   },
   {
     index: "02",
     verbatimName: "GR One — G R Infra Projects, Gurugram",
-    typology: "Corporate Headquarters Tower",
+    locationLabel: "Gurugram, Delhi NCR · Institutional Corridor",
+    typology: "Corporate Headquarters",
     region: "north",
     secondaryCategory: "commercial",
-    architecturalContext:
-      "Institutional corporate office landmark for G R Infraprojects in Gurugram featuring large-span commercial floorplates and daylight-oriented facades.",
-    surfaceScope: "Architectural concrete finishes & executive core mineral wall systems",
+    representativeSystems:
+      "Culture Concrete (CC01–CC12), LCC Linear Concrete Cladding & DecorCem",
   },
   {
     index: "03",
     verbatimName: "Plasser India — Karjan, Gujarat",
-    typology: "Industrial & Manufacturing Campus",
+    locationLabel: "Karjan, Vadodara District, Gujarat",
+    typology: "Industrial & Administrative Campus",
     region: "west",
     secondaryCategory: "commercial",
-    architecturalContext:
-      "State-of-the-art green industrial facility and administrative complex for Plasser (India) Pvt. Ltd. in Karjan, Vadodara.",
-    surfaceScope: "Heavy-duty exterior stone & protective mineral facade coatings",
-    publicImage: "/assets/projects/plasser-india-karjan.jpg",
-    publicImageCaption: "Plasser India manufacturing & administrative campus, Karjan, Gujarat (Public facility view)",
+    representativeSystems:
+      "Heavy-Duty Luxstone (LS-1101..1138) & Luxrock Multi-Color Granite Spray",
   },
   {
     index: "04",
     verbatimName: "Poonawala Hospital — Magarpatta/Hadapsar, Pune",
-    typology: "Tertiary Healthcare Institution",
+    locationLabel: "Magarpatta / Hadapsar, Pune, Maharashtra",
+    typology: "Healthcare & Medical Institution",
     region: "west",
     secondaryCategory: "hospitality",
-    architecturalContext:
-      "Multi-specialty healthcare campus in Hadapsar, Pune designed around hygienic, high-traffic public concourses and calm healing environments.",
-    surfaceScope: "Low-VOC breathable mineral wall finishes & durable public-zone coatings",
+    representativeSystems:
+      "Zero-VOC Lime-N-Clay Breathable Plasters & Seamless Hygienic Wall Coatings",
   },
   {
     index: "05",
     verbatimName: "Ujjwal Bungalow — Model Town, Pune",
-    typology: "Private Architectural Residence",
+    locationLabel: "Model Town, Pune, Maharashtra",
+    typology: "Private Architectural Bungalow",
     region: "west",
-    architecturalContext:
-      "Bespoke independent residential bungalow in Pune featuring warm elevation massing and shaded garden verandahs.",
-    surfaceScope: "Custom exterior travertine/stone finish & interior decorative plasters",
+    representativeSystems:
+      "Calce / Travertino Mineral Plaster, Abstract Granules & Custom Shade Boards",
   },
   {
     index: "06",
     verbatimName: "Sikka Mall of Noida — Noida",
-    typology: "Mixed-Use Retail & Commercial Landmark",
+    locationLabel: "Noida Expressway Corridor, Delhi NCR",
+    typology: "Flagship Commercial & Retail Concourse",
     region: "north",
     secondaryCategory: "commercial",
-    architecturalContext:
-      "High-visibility commercial, retail, and atrium development along the Noida Expressway corridor.",
-    surfaceScope: "Public plaza, atrium feature walls & commercial facade coating package",
-    publicImage: "/assets/projects/sikka-mall-noida.webp",
-    publicImageCaption: "Sikka commercial & mixed-use development context, Noida (Public architectural view)",
+    featured: true,
+    representativeSystems:
+      "Iconic Walls 3D Feature Reliefs, Luxrock Facade Systems & Stamp Concrete",
   },
   {
     index: "07",
     verbatimName: "Worx Design — Dwarka Sector 6",
+    locationLabel: "Dwarka Sector 6, New Delhi",
     typology: "Design Studio & Commercial Interior",
     region: "north",
     secondaryCategory: "commercial",
-    architecturalContext:
-      "Contemporary commercial studio space in Dwarka Sector 6, New Delhi showcasing tactile material surfaces under gallery lighting.",
-    surfaceScope: "Interior microcement, architectural concrete & sculpted feature surfaces",
+    representativeSystems:
+      "Cemento Floor 2K (LCF-101..116), DecorCem Wall & Fluted Concrete Panels",
   },
   {
     index: "08",
     verbatimName: "Mayfair Breeze — Andheri West, Mumbai",
-    typology: "Twin-Wing Residential Development",
+    locationLabel: "Andheri West, Mumbai, Maharashtra",
+    typology: "Multi-Storey Residential Tower",
     region: "west",
-    architecturalContext:
-      "14-storey twin-wing residential development by Mayfair Housing on Prashant Dawood Baug Road, Andheri West, Mumbai.",
-    surfaceScope: "Monsoon-grade exterior facade textures & grand entrance lobby finishes",
+    representativeSystems:
+      "Monsoon-Shielded Exterior Stone Granules & Podium Entrance Mineral Finishes",
   },
   {
     index: "09",
     verbatimName: "TCI Headquarters — Gurugram",
+    locationLabel: "Sector 32 Institutional Area, Gurugram",
     typology: "Institutional Corporate Campus",
     region: "north",
     secondaryCategory: "commercial",
-    architecturalContext:
-      "Transport Corporation of India (TCI House) courtyard-oriented corporate headquarters in Sector 32 Institutional Area, Gurugram.",
-    surfaceScope: "Courtyard facade mineral coatings & institutional interior wall systems",
+    featured: true,
+    representativeSystems:
+      "Architectural Formwork Concrete, Linear Cladding & Executive Interior Plasters",
   },
   {
     index: "10",
     verbatimName: "Desai's Residence — Camp, Dr Coyte Road, Pune",
+    locationLabel: "Camp, Dr Coyte Road, Pune, Maharashtra",
     typology: "Private Heritage-District Residence",
     region: "west",
-    architecturalContext:
-      "Private residential commission on Dr Coyte Road in Camp, Pune combining heritage proportions with refined contemporary interiors.",
-    surfaceScope: "Hand-troweled lime plaster, microtopping & bespoke interior textures",
+    representativeSystems:
+      "Lime-N-Clay Heritage Plaster, Dekor Plast Silk-Cotton & Microtopping",
   },
   {
     index: "11",
     verbatimName: "Lemonade Farm — Alibaug, Maharashtra",
-    typology: "Coastal Luxury Villa Estate",
+    locationLabel: "Alibaug Coastal Belt, Maharashtra",
+    typology: "Coastal Villa & Retreat",
     region: "west",
     secondaryCategory: "hospitality",
-    architecturalContext:
-      "5-bedroom coastal retreat and pool villa near Kihim/Kamath Beach in Alibaug, exposed to saline sea breezes and tropical monsoons.",
-    surfaceScope: "Breathable coastal lime plasters, pool-deck textures & seamless interior finishes",
+    representativeSystems:
+      "Breathable Hydraulic Lime Plaster, Poolside Stamped Hardscape & Siloxane Seal",
   },
   {
     index: "12",
     verbatimName: "Marriott — Port Blair",
-    typology: "Island Hospitality & Resort",
+    locationLabel: "Port Blair, Andaman & Nicobar Islands",
+    typology: "Landmark Hospitality & Island Resort",
     region: "hospitality",
-    architecturalContext:
-      "Hospitality destination in Port Blair, Andaman & Nicobar Islands requiring marine-grade durability and warm tropical materiality.",
-    surfaceScope: "Marine-grade exterior surface coatings & luxury guest-zone decorative finishes",
+    featured: true,
+    representativeSystems:
+      "Marine-Grade Exterior Stone Coatings, Signature 3D Reliefs & Luxury Wall Finishes",
   },
   {
     index: "13",
     verbatimName: "Hotel Ramada — Jammu",
-    typology: "Upscale Hospitality & Convention Retreat",
+    locationLabel: "Jammu, Jammu & Kashmir",
+    typology: "Hospitality & Convention Hotel",
     region: "north",
     secondaryCategory: "hospitality",
-    architecturalContext:
-      "Ramada Plaza hospitality landmark set against the Himalayan foothills in Jammu/Vijaypur featuring 28-foot pillar-less ballrooms and sculpted facade lines.",
-    surfaceScope: "Hospitality facade coating systems, ballroom & public concourse finishes",
-    publicImage: "/assets/projects/hotel-ramada-jammu.jpg",
-    publicImageCaption: "Hotel Ramada Plaza exterior facade architecture, Jammu (Public hospitality view)",
+    representativeSystems:
+      "Sculpted 3D Sandstone Reliefs, Dekor Plast Acoustic Finishes & Facade Coatings",
   },
   {
     index: "14",
     verbatimName: "Antalya Paradigm Builder — Oshiwara",
-    typology: "High-Rise Mixed-Use & Residential Tower",
+    locationLabel: "Oshiwara, Mumbai, Maharashtra",
+    typology: "High-Rise Residential & Podium Tower",
     region: "west",
-    architecturalContext:
-      "High-rise urban residential and podium development at 102 Downtown, Oshiwara, Mumbai.",
-    surfaceScope: "High-rise exterior stone/mineral coatings & podium elevation finishes",
+    representativeSystems:
+      "High-Rise Pneumatic Granite Spray (Luxrock) & Podium Elevation Cladding",
   },
 ] as const;
 
@@ -612,11 +616,12 @@ const STRUCTURED_DATA_JSON = JSON.stringify({
     "Specialist contractor and applicator of decorative interior and exterior surface coatings including mineral plasters, architectural concrete, microtopping floors, and 3D stone reliefs across India.",
   email: "profacciata@gmail.com",
   telephone: "+91-95094-45969",
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "New Delhi",
-    addressRegion: "Delhi",
-    addressCountry: "IN",
+  contactPoint: {
+    "@type": "ContactPoint",
+    contactType: "customer service",
+    email: "profacciata@gmail.com",
+    telephone: "+91-95094-45969",
+    areaServed: "IN",
   },
   areaServed: [
     "New Delhi",
@@ -636,8 +641,13 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
+  const siteRef = useRef<HTMLElement | null>(null);
   const viewerRef = useRef<ModelViewerElement | null>(null);
+  const userChangedCameraRef = useRef(false);
+  const hasFramed3DRef = useRef(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeNavSection, setActiveNavSection] = useState<string>("top");
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
   // Interactive 5-layer wall cutaway state
   const [activeLayerIdx, setActiveLayerIdx] = useState(3);
@@ -673,6 +683,151 @@ function Index() {
   const activePreset =
     FINISH_PRESETS.find((preset) => preset.id === activePresetId) ?? FINISH_PRESETS[0];
 
+  // Respect prefers-reduced-motion for 3D auto-rotation and smooth scrolling
+  useEffect(() => {
+    const mql = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const syncMotion = () => setPrefersReducedMotion(mql.matches);
+    queueMicrotask(syncMotion);
+    mql.addEventListener("change", syncMotion);
+    return () => mql.removeEventListener("change", syncMotion);
+  }, []);
+
+  // Observe major architectural sections for active navigation indicator
+  useEffect(() => {
+    const sectionIds = [
+      "top",
+      "approach",
+      "surface-model",
+      "finishes",
+      "systems",
+      "projects",
+      "contact",
+    ];
+    const elements = sectionIds
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => el !== null);
+    if (elements.length === 0 || typeof IntersectionObserver === "undefined") return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            setActiveNavSection(entry.target.id);
+          }
+        }
+      },
+      { rootMargin: "-22% 0px -55% 0px", threshold: 0.02 },
+    );
+
+    for (const el of elements) observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  // RAF-throttled scroll choreography: page progress, reversible section reveals,
+  // tactile plate parallax, and 3D stage entry camera sweep
+  useEffect(() => {
+    const site = siteRef.current;
+    if (!site) return;
+
+    const revealNodes = [
+      ...site.querySelectorAll<HTMLElement>("[data-pf-reveal]"),
+    ];
+    const parallaxNodes = [
+      ...site.querySelectorAll<HTMLElement>("[data-pf-parallax]"),
+    ];
+    const surfaceModelSection = document.getElementById("surface-model");
+
+    let rafId = 0;
+    let ticking = false;
+
+    const updateScrollChoreography = () => {
+      ticking = false;
+      const vh = Math.max(window.innerHeight, 1);
+      const scrollY = window.scrollY || window.pageYOffset;
+      const maxScroll = Math.max(
+        document.documentElement.scrollHeight - vh,
+        1,
+      );
+      const pageProgress = Math.min(Math.max(scrollY / maxScroll, 0), 1);
+      site.style.setProperty("--pf-page-progress", pageProgress.toFixed(4));
+
+      const approachEl = document.getElementById("approach");
+      if (approachEl && scrollY < approachEl.offsetTop - vh * 0.45) {
+        setActiveNavSection((prev) => (prev === "top" ? prev : "top"));
+      }
+
+      for (const node of revealNodes) {
+        if (prefersReducedMotion) {
+          node.dataset.pfState = "visible";
+          continue;
+        }
+        const rect = node.getBoundingClientRect();
+        if (rect.top <= vh * 0.9) {
+          node.dataset.pfState = "visible";
+        } else if (rect.top > vh * 0.96) {
+          node.dataset.pfState = "upcoming";
+        }
+      }
+
+      for (const frame of parallaxNodes) {
+        if (prefersReducedMotion) {
+          frame.style.removeProperty("--pf-parallax-y");
+          frame.style.removeProperty("--pf-parallax-scale");
+          continue;
+        }
+        const rect = frame.getBoundingClientRect();
+        if (rect.bottom < -120 || rect.top > vh + 120) {
+          continue;
+        }
+        const progress = Math.min(
+          Math.max((vh - rect.top) / Math.max(vh + rect.height, 1), 0),
+          1,
+        );
+        const shiftY = (0.5 - progress) * 18;
+        const scale = 1.045 - Math.abs(progress - 0.5) * 0.04;
+        frame.style.setProperty("--pf-parallax-y", `${shiftY.toFixed(1)}px`);
+        frame.style.setProperty("--pf-parallax-scale", scale.toFixed(3));
+      }
+
+      if (
+        surfaceModelSection &&
+        !prefersReducedMotion &&
+        !hasFramed3DRef.current &&
+        !userChangedCameraRef.current
+      ) {
+        const rect = surfaceModelSection.getBoundingClientRect();
+        if (rect.top < vh * 0.72 && rect.bottom > vh * 0.25) {
+          hasFramed3DRef.current = true;
+          const el = viewerRef.current;
+          if (el) {
+            el.setAttribute("camera-orbit", "34deg 72deg 23.5m");
+            window.setTimeout(() => {
+              if (!userChangedCameraRef.current) {
+                el.setAttribute("camera-orbit", "22deg 76deg 22m");
+              }
+            }, 180);
+          }
+        }
+      }
+    };
+
+    const onScrollOrResize = () => {
+      if (!ticking) {
+        ticking = true;
+        rafId = window.requestAnimationFrame(updateScrollChoreography);
+      }
+    };
+
+    updateScrollChoreography();
+    window.addEventListener("scroll", onScrollOrResize, { passive: true });
+    window.addEventListener("resize", onScrollOrResize);
+    return () => {
+      window.cancelAnimationFrame(rafId);
+      window.removeEventListener("scroll", onScrollOrResize);
+      window.removeEventListener("resize", onScrollOrResize);
+    };
+  }, [prefersReducedMotion, systemFilter, projectFilter]);
+
   // Dynamically load @google/model-viewer on client
   useEffect(() => {
     void import("@google/model-viewer").catch((error: unknown) => {
@@ -687,7 +842,7 @@ function Index() {
     const handleLoad = () => setModelReady(true);
     el.addEventListener("load", handleLoad);
     if (el.model?.materials?.length) {
-      setModelReady(true);
+      queueMicrotask(handleLoad);
     }
     return () => el.removeEventListener("load", handleLoad);
   }, []);
@@ -721,6 +876,7 @@ function Index() {
 
   // Apply camera view bookmark
   function handleCameraPreset(orbit: string) {
+    userChangedCameraRef.current = true;
     setCameraView(orbit);
     const el = viewerRef.current;
     if (el) {
@@ -809,8 +965,43 @@ function Index() {
   const activeStratum = WALL_STRATA[activeLayerIdx] ?? WALL_STRATA[3];
 
   return (
-    <main className="pf-site" id="top">
+    <main className="pf-site" id="top" ref={siteRef}>
       <StructuredData json={STRUCTURED_DATA_JSON} />
+
+      {/* GLOBAL EXHIBITION SCENE RAIL (DESKTOP SCROLL TELEMETRY) */}
+      <aside className="pf-scene-rail" aria-label="Architectural exhibition scenes">
+        <div className="pf-scene-rail-track" aria-hidden="true">
+          <span className="pf-scene-rail-fill" />
+        </div>
+        <ol className="pf-scene-rail-list">
+          {[
+            { id: "top", code: "00", label: "Film" },
+            { id: "approach", code: "01", label: "Strata" },
+            { id: "surface-model", code: "02", label: "3D Relief" },
+            { id: "finishes", code: "03", label: "Finishes" },
+            { id: "systems", code: "04", label: "15 Systems" },
+            { id: "projects", code: "05", label: "14 Projects" },
+            { id: "contact", code: "06", label: "Specify" },
+          ].map((sceneItem) => {
+            const isCurrent = activeNavSection === sceneItem.id;
+            return (
+              <li key={sceneItem.id}>
+                <a
+                  href={`#${sceneItem.id}`}
+                  className={
+                    "pf-scene-rail-link" +
+                    (isCurrent ? " pf-scene-rail-link--active" : "")
+                  }
+                  aria-current={isCurrent ? "location" : undefined}
+                >
+                  <span className="pf-scene-rail-code">{sceneItem.code}</span>
+                  <span className="pf-scene-rail-label">{sceneItem.label}</span>
+                </a>
+              </li>
+            );
+          })}
+        </ol>
+      </aside>
 
       {/* 00. ARCHITECTURAL DATUM HEADER WITH ORIGINAL SUPPLIED LOGO */}
       <header className="pf-header">
@@ -829,19 +1020,41 @@ function Index() {
         </a>
 
         <nav className="pf-nav" aria-label="Primary architectural navigation">
-          <a href="#approach">
+          <a
+            href="#approach"
+            className={activeNavSection === "approach" ? "pf-nav-link--active" : undefined}
+            aria-current={activeNavSection === "approach" ? "location" : undefined}
+          >
             <span className="pf-nav-idx">01</span> Discipline
           </a>
-          <a href="#surface-model">
+          <a
+            href="#surface-model"
+            className={
+              activeNavSection === "surface-model" ? "pf-nav-link--active" : undefined
+            }
+            aria-current={activeNavSection === "surface-model" ? "location" : undefined}
+          >
             <span className="pf-nav-idx">02</span> 3D Relief Study
           </a>
-          <a href="#finishes">
+          <a
+            href="#finishes"
+            className={activeNavSection === "finishes" ? "pf-nav-link--active" : undefined}
+            aria-current={activeNavSection === "finishes" ? "location" : undefined}
+          >
             <span className="pf-nav-idx">03</span> Finishes
           </a>
-          <a href="#systems">
+          <a
+            href="#systems"
+            className={activeNavSection === "systems" ? "pf-nav-link--active" : undefined}
+            aria-current={activeNavSection === "systems" ? "location" : undefined}
+          >
             <span className="pf-nav-idx">04</span> 15 Catalogues
           </a>
-          <a href="#projects">
+          <a
+            href="#projects"
+            className={activeNavSection === "projects" ? "pf-nav-link--active" : undefined}
+            aria-current={activeNavSection === "projects" ? "location" : undefined}
+          >
             <span className="pf-nav-idx">05</span> 14 Projects
           </a>
         </nav>
@@ -863,30 +1076,46 @@ function Index() {
       </header>
 
       {mobileMenuOpen && (
-        <nav
-          id="pf-mobile-drawer"
-          className="pf-mobile-drawer"
-          aria-label="Mobile section navigation"
-        >
-          <a href="#approach" onClick={() => setMobileMenuOpen(false)}>
-            <span>01</span> Applicator Discipline & 5-Layer Wall System
-          </a>
-          <a href="#surface-model" onClick={() => setMobileMenuOpen(false)}>
-            <span>02</span> Interactive 3D Surface & Grazing-Light Workbench
-          </a>
-          <a href="#finishes" onClick={() => setMobileMenuOpen(false)}>
-            <span>03</span> Curated Finish Portfolio & Master Shade Card
-          </a>
-          <a href="#systems" onClick={() => setMobileMenuOpen(false)}>
-            <span>04</span> Supplier & Material Catalogue Schedule (15)
-          </a>
-          <a href="#projects" onClick={() => setMobileMenuOpen(false)}>
-            <span>05</span> Executed Project Reference Register (14)
-          </a>
-          <a href="#contact" onClick={() => setMobileMenuOpen(false)}>
-            <span>06</span> Project Enquiry & Sample Board Desk
-          </a>
-        </nav>
+        <>
+          <div
+            className="pf-mobile-backdrop"
+            aria-hidden="true"
+            onClick={() => setMobileMenuOpen(false)}
+          />
+          <nav
+            id="pf-mobile-drawer"
+            className="pf-mobile-drawer"
+            aria-label="Mobile section navigation"
+          >
+            <a href="#approach" onClick={() => setMobileMenuOpen(false)}>
+              <span>01</span> Applicator Discipline & 5-Layer Wall System
+            </a>
+            <a href="#surface-model" onClick={() => setMobileMenuOpen(false)}>
+              <span>02</span> Interactive 3D Surface & Grazing-Light Workbench
+            </a>
+            <a href="#finishes" onClick={() => setMobileMenuOpen(false)}>
+              <span>03</span> Curated Finish Portfolio & Shade Standards
+            </a>
+            <a href="#systems" onClick={() => setMobileMenuOpen(false)}>
+              <span>04</span> Supplier & Material Catalogue Schedule (15)
+            </a>
+            <a href="#projects" onClick={() => setMobileMenuOpen(false)}>
+              <span>05</span> Executed Project Reference Register (14)
+            </a>
+            <a href="#contact" onClick={() => setMobileMenuOpen(false)}>
+              <span>06</span> Project Enquiry & Sample Board Desk
+            </a>
+            <div className="pf-mobile-drawer-footer">
+              <a
+                className="pf-mobile-drawer-cta"
+                href="#contact"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Specify a Surface & Request Sample Board →
+              </a>
+            </div>
+          </nav>
+        </>
       )}
 
       {/* 01. CINEMATIC MULTI-SCENE SCROLL-SCRUB FILM */}
@@ -898,19 +1127,21 @@ function Index() {
         />
         <div className="pf-hero-bottom-bar">
           <div className="pf-hero-meta">
+            <span>SCENE 01 → 02 THRESHOLD</span>
+            <span className="pf-hero-sep">·</span>
             <span>SPECIALIST CONTRACTOR & APPLICATOR</span>
             <span className="pf-hero-sep">·</span>
-            <span>INTERIOR & EXTERIOR MINERAL FINISHES</span>
+            <span>ARCHITECTURAL SURFACE FILM (ILLUSTRATIVE STUDY)</span>
           </div>
           <a className="pf-hero-skip" href="#approach">
-            Skip Film to Technical Dossier ↓
+            Enter 5-Layer Wall Dossier ↓
           </a>
         </div>
       </section>
 
       {/* 02. CONTRACTOR DISCIPLINE & 5-LAYER WALL SYSTEM CUTAWAY */}
       <section className="pf-approach" id="approach" aria-labelledby="pf-approach-title">
-        <div className="pf-approach-top">
+        <div className="pf-approach-top" data-pf-reveal="">
           <div className="pf-approach-meta">
             <p className="pf-section-label">01 / Execution Authority & Role Clarity</p>
             <div className="pf-role-pill-group">
@@ -948,24 +1179,78 @@ function Index() {
           </div>
         </div>
 
-        <div className="pf-strata-workbench">
+        <div className="pf-strata-workbench" data-pf-reveal="">
           <div className="pf-strata-visual">
-            <div className="pf-strata-image-frame">
+            <div
+              className="pf-strata-image-frame"
+              data-pf-parallax=""
+              data-active-stratum={activeStratum.step}
+            >
               <img
                 src="/assets/wall-cross-section.jpg"
-                alt="Five-layer architectural wall coating build-up from substrate to protective sealer"
+                alt="Illustrative five-layer architectural wall coating build-up from substrate to protective sealer"
                 loading="lazy"
               />
+              <div
+                className="pf-strata-callouts"
+                role="group"
+                aria-label="Interactive wall cutaway layer pins"
+              >
+                {WALL_STRATA.map((layer, idx) => {
+                  const isPinActive = idx === activeLayerIdx;
+                  return (
+                    <button
+                      key={layer.step}
+                      type="button"
+                      className={
+                        "pf-strata-pin pf-strata-pin--" +
+                        layer.step +
+                        (isPinActive ? " pf-strata-pin--active" : "")
+                      }
+                      aria-label={`Inspect Stratum ${layer.step}: ${layer.name}`}
+                      aria-pressed={isPinActive}
+                      onClick={() => setActiveLayerIdx(idx)}
+                    >
+                      <span className="pf-strata-pin-num">{layer.step}</span>
+                      <span className="pf-strata-pin-label">{layer.name}</span>
+                    </button>
+                  );
+                })}
+              </div>
               <div className="pf-strata-badge">
-                <span>ARCHITECTURAL STRATA CUTAWAY</span>
+                <span>ARCHITECTURAL STRATA CUTAWAY · ILLUSTRATIVE STUDY</span>
                 <strong>Active Layer {activeStratum.step} / 05</strong>
               </div>
             </div>
 
             <div className="pf-strata-active-card" aria-live="polite">
               <div className="pf-strata-active-header">
-                <span className="pf-mono-tag">STRATUM {activeStratum.step}</span>
-                <span className="pf-mono-spec">{activeStratum.spec}</span>
+                <div className="pf-strata-active-tags">
+                  <span className="pf-mono-tag">STRATUM {activeStratum.step}</span>
+                  <span className="pf-mono-spec">{activeStratum.spec}</span>
+                </div>
+                <div className="pf-strata-stepper" role="group" aria-label="Step through wall layers">
+                  <button
+                    type="button"
+                    className="pf-strata-step-btn"
+                    onClick={() =>
+                      setActiveLayerIdx(
+                        (prev) => (prev - 1 + WALL_STRATA.length) % WALL_STRATA.length,
+                      )
+                    }
+                  >
+                    ← Prev
+                  </button>
+                  <button
+                    type="button"
+                    className="pf-strata-step-btn"
+                    onClick={() =>
+                      setActiveLayerIdx((prev) => (prev + 1) % WALL_STRATA.length)
+                    }
+                  >
+                    Next Coat →
+                  </button>
+                </div>
               </div>
               <h3>{activeStratum.name}</h3>
               <p>{activeStratum.detail}</p>
@@ -1013,7 +1298,7 @@ function Index() {
         id="surface-model"
         aria-labelledby="pf-3d-title"
       >
-        <div className="pf-3d-header">
+        <div className="pf-3d-header" data-pf-reveal="">
           <div>
             <p className="pf-section-label pf-section-label--light">
               02 / Interactive 3D Material & Raking-Light Workbench
@@ -1028,81 +1313,114 @@ function Index() {
           </p>
         </div>
 
-        <div className="pf-3d-grid">
-          <div className="pf-model-stage">
-            <model-viewer
-              ref={viewerRef}
-              className="pf-model-viewer"
-              src="/assets/world/facade-study.glb"
-              alt="Interactive 3D architectural surface monolith combining stepped mineral plaster courses, 24-flute sculpted sandstone relief bay, dark basalt plinth, and anodized bronze reveals"
-              poster="/assets/world/monolith-poster.png"
-              camera-controls
-              auto-rotate
-              auto-rotate-delay="3500"
-              rotation-per-second="4deg"
-              camera-orbit={cameraView}
-              camera-target="0.4m 0.4m 0.2m"
-              field-of-view="32deg"
-              min-camera-orbit="auto 25deg 8m"
-              max-camera-orbit="auto 88deg 26m"
-              shadow-intensity="1.22"
-              shadow-softness="0.46"
-              exposure="0.98"
-              environment-image="neutral"
-              touch-action="pan-y"
-            />
-
-            <div className="pf-model-top-hud">
-              <span className="pf-hud-chip">
-                ACTIVE SYSTEM: <strong>{activePreset.code}</strong>
-              </span>
-              <span className="pf-hud-chip">
-                GRAZING ANGLE: <strong>{lightAngle}°</strong>
-              </span>
+        <div className="pf-3d-grid" data-pf-reveal="">
+          <div
+            className="pf-model-stage"
+            data-light-band={
+              lightAngle <= 25
+                ? "raking-dusk"
+                : lightAngle <= 45
+                  ? "oblique-relief"
+                  : lightAngle <= 60
+                    ? "gallery"
+                    : "high-noon"
+            }
+          >
+            <div className="pf-model-viewport">
+              <model-viewer
+                ref={viewerRef}
+                className="pf-model-viewer"
+                src="/assets/world/facade-study.glb"
+                alt="Interactive 3D architectural surface monolith combining stepped mineral plaster courses, 24-flute sculpted sandstone relief bay, dark basalt plinth, and anodized bronze reveals"
+                poster="/assets/world/monolith-poster.png"
+                camera-controls
+                auto-rotate={prefersReducedMotion ? undefined : true}
+                auto-rotate-delay="3500"
+                rotation-per-second="4deg"
+                camera-orbit={cameraView}
+                camera-target="0.4m 0.4m 0.2m"
+                field-of-view="32deg"
+                min-camera-orbit="auto 25deg 8m"
+                max-camera-orbit="auto 88deg 26m"
+                shadow-intensity="1.35"
+                shadow-softness="0.32"
+                exposure="0.92"
+                environment-image="legacy"
+                touch-action="pan-y"
+              />
+              <div className="pf-model-raking-overlay" aria-hidden="true" />
+              <div className="pf-model-top-hud">
+                <span className="pf-hud-chip">
+                  ACTIVE SYSTEM: <strong>{activePreset.code}</strong>
+                </span>
+                <span className="pf-hud-chip">
+                  GRAZING ANGLE: <strong>{lightAngle}°</strong> (
+                  {lightAngle <= 25
+                    ? "RAKING DUSK"
+                    : lightAngle <= 45
+                      ? "OBLIQUE RELIEF"
+                      : lightAngle <= 60
+                        ? "GALLERY WASH"
+                        : "HIGH NOON"}
+                  )
+                </span>
+              </div>
+              <div className="pf-model-light-compass" aria-hidden="true">
+                <span className="pf-compass-label">SOLAR / GALLERY INCIDENCE</span>
+                <div className="pf-compass-meter">
+                  <span
+                    className="pf-compass-ray"
+                    data-light-deg={lightAngle}
+                  />
+                  <strong>{lightAngle}°</strong>
+                </div>
+              </div>
             </div>
 
-            <div className="pf-model-camera-bar" role="group" aria-label="Camera angle presets">
-              <button
-                type="button"
-                className={
-                  "pf-cam-btn" +
-                  (cameraView === "22deg 76deg 22m" ? " pf-cam-btn--active" : "")
-                }
-                onClick={() => handleCameraPreset("22deg 76deg 22m")}
-              >
-                Oblique Monolith
-              </button>
-              <button
-                type="button"
-                className={
-                  "pf-cam-btn" +
-                  (cameraView === "4deg 80deg 14.5m" ? " pf-cam-btn--active" : "")
-                }
-                onClick={() => handleCameraPreset("4deg 80deg 14.5m")}
-              >
-                Macro 3D Fluted Relief
-              </button>
-              <button
-                type="button"
-                className={
-                  "pf-cam-btn" +
-                  (cameraView === "-28deg 74deg 20m" ? " pf-cam-btn--active" : "")
-                }
-                onClick={() => handleCameraPreset("-28deg 74deg 20m")}
-              >
-                Coursing & Bronze Louvers
-              </button>
-            </div>
+            <div className="pf-model-stage-footer">
+              <div className="pf-model-camera-bar" role="group" aria-label="Camera angle presets">
+                <button
+                  type="button"
+                  className={
+                    "pf-cam-btn" +
+                    (cameraView === "22deg 76deg 22m" ? " pf-cam-btn--active" : "")
+                  }
+                  onClick={() => handleCameraPreset("22deg 76deg 22m")}
+                >
+                  Oblique Monolith
+                </button>
+                <button
+                  type="button"
+                  className={
+                    "pf-cam-btn" +
+                    (cameraView === "4deg 80deg 14.5m" ? " pf-cam-btn--active" : "")
+                  }
+                  onClick={() => handleCameraPreset("4deg 80deg 14.5m")}
+                >
+                  Macro 3D Fluted Relief
+                </button>
+                <button
+                  type="button"
+                  className={
+                    "pf-cam-btn" +
+                    (cameraView === "-28deg 74deg 20m" ? " pf-cam-btn--active" : "")
+                  }
+                  onClick={() => handleCameraPreset("-28deg 74deg 20m")}
+                >
+                  Coursing & Bronze Louvers
+                </button>
+              </div>
 
-            <span className="pf-model-hint">
-              Drag to orbit 3D monolith · Scroll or pinch to inspect surface relief
-            </span>
+              <span className="pf-model-hint">
+                Drag to orbit 3D monolith · Scroll or pinch to inspect surface relief
+              </span>
+            </div>
           </div>
 
           <div className="pf-3d-console">
             <div className="pf-console-block">
               <span className="pf-console-label">
-                STEP A · SELECT CATALOGUE FINISH PRESET
+                STEP A · SELECT CATALOGUE FINISH PRESET (MACRO SWATCH)
               </span>
               <div className="pf-preset-list" role="radiogroup" aria-label="3D Finish System">
                 {FINISH_PRESETS.map((preset) => {
@@ -1195,15 +1513,17 @@ function Index() {
         </div>
       </section>
 
-      {/* 04. CURATED FINISH PORTFOLIO & PHYSICAL MASTER SHADE CARD */}
+      {/* 04. CURATED FINISH PORTFOLIO & PHYSICAL SHADE STANDARDS */}
       <section className="pf-finishes" id="finishes" aria-labelledby="pf-finishes-title">
-        <div className="pf-section-heading">
+        <div className="pf-section-heading" data-pf-reveal="">
           <p className="pf-section-label">03 / Curated Finish Families</p>
           <h2 id="pf-finishes-title">Tactile surfaces engineered for Indian architecture.</h2>
           <p className="pf-section-intro">
             Explore the six core interior and exterior finish disciplines executed by
-            Profacciata. Every finish family is backed by physical manufacturer shade
-            cards and on-site mock-up sampling prior to full-scale execution.
+            Profacciata. Visual plates below are{" "}
+            <strong>illustrative architectural &amp; material studies</strong> showing
+            raking-light texture behavior; every project specification is finalized using
+            physical manufacturer shade cards and on-site sample mock-ups.
           </p>
         </div>
 
@@ -1212,16 +1532,28 @@ function Index() {
             <article
               className={"pf-finish-card " + finish.className}
               key={finish.index}
+              data-pf-reveal=""
             >
-              <div className="pf-finish-image">
+              <div className="pf-finish-image" data-pf-parallax="">
                 <img src={finish.image} alt={finish.alt} loading="lazy" />
                 <span className="pf-finish-badge">{finish.index}</span>
+                <span className="pf-finish-study-tag">
+                  Illustrative Surface Study
+                </span>
                 <span className="pf-finish-zone-tag">{finish.zone}</span>
               </div>
               <div className="pf-finish-copy">
                 <div className="pf-finish-meta">
-                  <span className="pf-finish-supplier">{finish.supplier}</span>
-                  <span className="pf-finish-codes">{finish.codes}</span>
+                  <div className="pf-finish-meta-row">
+                    <span
+                      className={"pf-finish-swatch " + finish.swatchClass}
+                      aria-hidden="true"
+                    />
+                    <div className="pf-finish-meta-text">
+                      <span className="pf-finish-supplier">{finish.supplier}</span>
+                      <span className="pf-finish-codes">{finish.codes}</span>
+                    </div>
+                  </div>
                 </div>
                 <h3>{finish.title}</h3>
                 <p>{finish.summary}</p>
@@ -1243,18 +1575,16 @@ function Index() {
           ))}
         </div>
 
-        {/* PHYSICAL CATALOGUE & SHADE CARD EVIDENCE STRIP */}
-        <div className="pf-shade-evidence">
+        {/* PHYSICAL SHADE CARD & SAMPLE BOARD VERIFICATION LEDGER */}
+        <div className="pf-shade-evidence" data-pf-reveal="">
           <div className="pf-shade-evidence-copy">
-            <p className="pf-section-label">Physical Shade Card & Panel Standards</p>
+            <p className="pf-section-label">Physical Shade Card & Sample Protocol</p>
             <h3>Verified against physical mineral chips before site application.</h3>
             <p>
-              Screen renders never replace physical aggregate inspection. Profacciata
-              presents official manufacturer shade cards—including the{" "}
-              <strong>64-shade Luxture Master Shade Card (LMSC-301..364)</strong>,{" "}
-              <strong>Crushed Stone & Granite Finish Cards (SFA-1..27 / GFN-1..21)</strong>,
-              and <strong>Signature 3D Relief Panels (SG-31..33)</strong>—and prepares
-              site-specific sample boards for architect sign-off.
+              Digital screens cannot reproduce real silica grain, crushed marble sparkle,
+              or carved relief depth. Prior to site execution, Profacciata brings physical
+              manufacturer shade cards and prepares custom sample boards on your actual
+              substrate for architect sign-off.
             </p>
             <button
               type="button"
@@ -1271,30 +1601,31 @@ function Index() {
             </button>
           </div>
 
-          <div className="pf-shade-evidence-cards">
-            <figure className="pf-evidence-figure">
-              <img
-                src="/assets/texture-luxture-card.png"
-                alt="Physical Master Shade Card showing Stone Finish SFA-4 to SFA-22, Granite Finish GFN-2 to GFN-21, and Granules 21-001 to 21-017"
-                loading="lazy"
-              />
-              <figcaption>
-                <strong>Physical Stone & Granite Shade Card</strong>
-                <span>SFA-1..27 · GFN-1..21 · Granules 21-001..017</span>
-              </figcaption>
-            </figure>
-
-            <figure className="pf-evidence-figure">
-              <img
-                src="/assets/texture-signature-3d.png"
-                alt="Signature 3D New Arrivals catalogue sheet showing sculpted relief panels SG 31, SG 32, and SG 33"
-                loading="lazy"
-              />
-              <figcaption>
-                <strong>Signature 3D Architectural Reliefs</strong>
-                <span>500 × 500 mm / 25 mm Relief Depth · SG-31 to SG-33</span>
-              </figcaption>
-            </figure>
+          <div className="pf-shade-ledger-grid">
+            <div className="pf-shade-ledger-item">
+              <span className="pf-mono-tag">LMSC-301 TO LMSC-364</span>
+              <strong>64-Shade Master Mineral Pigment Index</strong>
+              <p>
+                Calibrated architectural pigment system across Travertino, Calce, Argilla,
+                Dholpur, and Finesta plaster families.
+              </p>
+            </div>
+            <div className="pf-shade-ledger-item">
+              <span className="pf-mono-tag">SFA-1..27 · GFN-1..21 · LS-1101..1138</span>
+              <strong>Natural Crushed Stone & Granite Chip Standards</strong>
+              <p>
+                Physical aggregate chip cards for Luxstone, Luxrock Satin/Mid Stone, and
+                Abstract marble granule facade coatings.
+              </p>
+            </div>
+            <div className="pf-shade-ledger-item">
+              <span className="pf-mono-tag">LCF-101..116 · LDC-201..216 · SG-31..33</span>
+              <strong>Microtopping & 3D Relief Sample Tiles</strong>
+              <p>
+                32 Cemento 2K floor and DecorCem wall shades alongside 12–55 mm sculpted
+                sandstone and mineral composite relief panels.
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -1305,7 +1636,7 @@ function Index() {
         id="systems"
         aria-labelledby="pf-material-reference-title"
       >
-        <div className="pf-material-reference-header">
+        <div className="pf-material-reference-header" data-pf-reveal="">
           <div>
             <p className="pf-section-label">04 / Supplier & Material Systems Matrix</p>
             <h2 id="pf-material-reference-title">
@@ -1326,7 +1657,7 @@ function Index() {
           {(
             [
               ["all", "All 15 Catalogues"],
-              ["plaster", "Mineral & Lime Plasters (4)"],
+              ["plaster", "Mineral & Lime Plasters (3)"],
               ["concrete", "Concrete & Microtopping (5)"],
               ["exterior", "Exterior Stone & Spray (4)"],
               ["relief", "3D Relief & Cladding (3)"],
@@ -1347,7 +1678,7 @@ function Index() {
           ))}
         </div>
 
-        <div className="pf-catalogue-accordion">
+        <div className="pf-catalogue-accordion" data-pf-reveal="">
           {filteredCatalogues.map((item) => {
             const isExpanded = expandedSystemId === item.id;
             return (
@@ -1416,7 +1747,7 @@ function Index() {
 
       {/* 06. EXECUTED PROJECT REFERENCE REGISTER (14 VERBATIM REFERENCES) */}
       <section className="pf-projects" id="projects" aria-labelledby="pf-projects-title">
-        <div className="pf-projects-heading">
+        <div className="pf-projects-heading" data-pf-reveal="">
           <div>
             <p className="pf-section-label pf-section-label--light">
               05 / Executed Project Reference Register
@@ -1424,35 +1755,34 @@ function Index() {
             <h2 id="pf-projects-title">14 architectural landmarks & private commissions.</h2>
           </div>
           <p className="pf-projects-lead">
-            Selected client-supplied project references across Mumbai, Gurugram, Noida,
-            Pune, Alibaug, Gujarat, Jammu, and Port Blair—spanning high-rise residential
-            towers, corporate headquarters, tertiary hospitals, industrial plants, luxury
+            Selected project references supplied by Profacciata across Mumbai, Gurugram,
+            Noida, Pune, Alibaug, Gujarat, Jammu, and Port Blair—spanning residential
+            developments, corporate headquarters, hospitals, industrial campuses, private
             villas, and hotels.
           </p>
         </div>
 
-        {/* PUBLIC ARCHITECTURAL CONTEXT SPOTLIGHT */}
-        <div className="pf-project-spotlight-grid">
-          {CLIENT_PROJECTS.filter((p) => Boolean(p.publicImage)).map((proj) => (
-            <article className="pf-spotlight-card" key={proj.index}>
-              <div className="pf-spotlight-img-wrap">
-                <img
-                  src={proj.publicImage}
-                  alt={proj.publicImageCaption ?? proj.verbatimName}
-                  loading="lazy"
-                />
-                <span className="pf-spotlight-idx">REF {proj.index}</span>
-              </div>
-              <div className="pf-spotlight-body">
-                <span className="pf-spotlight-type">{proj.typology}</span>
-                <h3>{proj.verbatimName}</h3>
-                <p>{proj.architecturalContext}</p>
-                <small className="pf-spotlight-scope">
-                  <strong>Surface Discipline:</strong> {proj.surfaceScope}
-                </small>
-              </div>
-            </article>
-          ))}
+        {/* ARCHITECTURAL COMMISSION FOOTPRINT SUMMARY STRIP */}
+        <div
+          className="pf-project-metrics"
+          aria-label="Project reference overview"
+          data-pf-reveal=""
+        >
+          <div className="pf-project-metric-card">
+            <span className="pf-project-metric-num">14</span>
+            <strong>Named Project References</strong>
+            <span>Client-supplied register across India</span>
+          </div>
+          <div className="pf-project-metric-card">
+            <span className="pf-project-metric-num">08</span>
+            <strong>Cities & Architectural Corridors</strong>
+            <span>Mumbai · Gurugram · Noida · Pune · Alibaug · Karjan · Jammu · Port Blair</span>
+          </div>
+          <div className="pf-project-metric-card">
+            <span className="pf-project-metric-num">04</span>
+            <strong>Building Sectors</strong>
+            <span>Residential Towers & Villas · Corporate HQ · Hospitality · Healthcare & Industrial</span>
+          </div>
         </div>
 
         <div
@@ -1485,44 +1815,61 @@ function Index() {
           ))}
         </div>
 
-        <div className="pf-project-list">
-          {filteredProjects.map((proj) => (
-            <article className="pf-project-row" key={proj.index}>
-              <div className="pf-project-row-top">
-                <span className="pf-project-no">{proj.index}</span>
-                <span className="pf-project-tag">{proj.typology}</span>
-              </div>
-              <h3>{proj.verbatimName}</h3>
-              <p className="pf-project-context">{proj.architecturalContext}</p>
-              <div className="pf-project-footer">
-                <span className="pf-project-scope">{proj.surfaceScope}</span>
-                <button
-                  type="button"
-                  className="pf-project-enquire-btn"
-                  onClick={() =>
-                    prefillSpecification({
-                      note: `Referencing comparable project scope to ${proj.verbatimName} (${proj.typology}).`,
-                    })
-                  }
-                >
-                  Enquire Similar Scope →
-                </button>
-              </div>
-            </article>
-          ))}
+        <div className="pf-project-list" data-pf-reveal="">
+          {filteredProjects.map((proj) => {
+            const isFeatured = Boolean(proj.featured && projectFilter === "all");
+            return (
+              <article
+                className={
+                  "pf-project-row" + (isFeatured ? " pf-project-row--featured" : "")
+                }
+                key={proj.index}
+              >
+                <div className="pf-project-row-main">
+                  <div className="pf-project-row-top">
+                    <span className="pf-project-no">{proj.index}</span>
+                    {proj.featured && (
+                      <span className="pf-project-featured-pill">
+                        KEY ARCHITECTURAL COMMISSION
+                      </span>
+                    )}
+                    <span className="pf-project-tag">{proj.typology}</span>
+                  </div>
+                  <h3>{proj.verbatimName}</h3>
+                  <p className="pf-project-context">{proj.locationLabel}</p>
+                </div>
+                <div className="pf-project-footer">
+                  <span className="pf-project-scope">
+                    Representative Systems: {proj.representativeSystems}
+                  </span>
+                  <button
+                    type="button"
+                    className="pf-project-enquire-btn"
+                    onClick={() =>
+                      prefillSpecification({
+                        note: `Enquiring about surface finishes for a project comparable to ${proj.verbatimName} (${proj.typology}).`,
+                      })
+                    }
+                  >
+                    Enquire Comparable Project →
+                  </button>
+                </div>
+              </article>
+            );
+          })}
         </div>
 
         <p className="pf-projects-disclaimer">
-          Project names are presented verbatim from Profacciata&apos;s client reference
-          register. Public architectural context photographs above illustrate the
-          referenced developments and do not claim exclusive copyright over third-party
-          building photography.
+          Project names and locations above are presented verbatim from Profacciata&apos;s
+          client-supplied reference register. Representative finish systems indicate
+          applicable catalogue families for each building typology; site photography is
+          shared directly during project consultations where client permission applies.
         </p>
       </section>
 
       {/* 07. ARCHITECTURAL SPECIFICATION & SITE CONSULTATION DESK */}
       <section className="pf-contact" id="contact" aria-labelledby="pf-contact-title">
-        <div className="pf-contact-heading">
+        <div className="pf-contact-heading" data-pf-reveal="">
           <p className="pf-section-label">06 / Specification & Consultation Desk</p>
           <h2 id="pf-contact-title">Discuss your surface, substrate & sample boards.</h2>
           <p>
@@ -1539,23 +1886,25 @@ function Index() {
             </a>
 
             <a className="pf-contact-card" href="tel:+919509445969">
-              <span className="pf-contact-card-label">DIRECT PHONE & SITE CONSULTATION</span>
+              <span className="pf-contact-card-label">DIRECT PHONE & WHATSAPP DESK</span>
               <strong>+91 95094 45969</strong>
-              <span className="pf-contact-card-action">Call Principal Desk ↗</span>
+              <span className="pf-contact-card-action">
+                Neeraj Sharma · Call or WhatsApp ↗
+              </span>
             </a>
 
             <div className="pf-contact-card pf-contact-card--static">
-              <span className="pf-contact-card-label">PRACTICE & REGISTRATION</span>
-              <strong>New Delhi Principal Office · Pan-India Execution</strong>
+              <span className="pf-contact-card-label">PRACTICE & SITE COVERAGE</span>
+              <strong>Pan-India Execution · Interior & Exterior Finishes</strong>
               <span className="pf-contact-card-sub">
-                GST Registered Specialist Surface-Coatings Contractor (Proprietor: Harsh
-                Singhal)
+                Specialist Surface-Coatings Contractor & Applicator · Tagline: &ldquo;Your
+                concept is our project, Concreting Relationship&rdquo;
               </span>
             </div>
           </div>
         </div>
 
-        <form className="pf-enquiry-form" onSubmit={handleEnquirySubmit}>
+        <form className="pf-enquiry-form" onSubmit={handleEnquirySubmit} data-pf-reveal="">
           <div className="pf-form-header">
             <span className="pf-mono-tag">ARCHITECTURAL BRIEF BUILDER</span>
             <span>No server tracking · Direct to Profacciata</span>
@@ -1660,6 +2009,13 @@ function Index() {
               required
             />
           </label>
+
+          <div className="pf-brief-preview pf-form-wide" aria-live="polite">
+            <span className="pf-brief-preview-label">
+              LIVE STRUCTURED SPECIFICATION PREVIEW
+            </span>
+            <pre className="pf-brief-preview-code">{buildStructuredBriefText()}</pre>
+          </div>
 
           <div className="pf-form-actions pf-form-wide">
             <button className="pf-submit" type="submit">
