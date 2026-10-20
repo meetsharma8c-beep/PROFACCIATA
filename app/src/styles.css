@@ -249,9 +249,9 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 24px;
-  min-height: 78px;
-  padding: 8px clamp(20px, 4vw, 56px);
+  gap: 18px;
+  min-height: 66px;
+  padding: 5px clamp(16px, 3vw, 42px);
   background-color: var(--pf-surface-brand);
   border-bottom: 1px solid var(--pf-line);
   box-shadow: 0 2px 18px rgba(22, 24, 22, 0.04);
@@ -260,7 +260,7 @@ body {
 .pf-brand-link {
   display: inline-flex;
   align-items: center;
-  padding: 4px 8px;
+  padding: 0;
   background-color: var(--pf-surface-brand);
   text-decoration: none;
   flex-shrink: 0;
@@ -268,16 +268,16 @@ body {
 
 .pf-brand-logo {
   display: block;
-  height: 50px;
+  height: 48px;
   width: auto;
-  max-width: 240px;
+  max-width: 220px;
   object-fit: contain;
 }
 
 .pf-nav {
   display: flex;
   align-items: center;
-  gap: clamp(18px, 2.4vw, 34px);
+  gap: clamp(12px, 1.8vw, 24px);
 }
 
 .pf-nav a {
@@ -286,7 +286,7 @@ body {
   gap: 6px;
   color: var(--pf-ink);
   text-decoration: none;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.01em;
   opacity: 0.82;
@@ -314,9 +314,9 @@ body {
 .pf-header-cta {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
-  min-height: 44px;
-  padding: 0 18px;
+  gap: 9px;
+  min-height: 38px;
+  padding: 0 14px;
   background-color: var(--pf-ink);
   color: var(--pf-surface-brand);
   border: 1px solid var(--pf-ink);
@@ -1907,24 +1907,25 @@ body {
   align-items: center;
   gap: 32px;
   padding: 36px clamp(20px, 5vw, 80px);
-  background-color: var(--pf-plaster);
-  border-top: 1px solid var(--pf-line-strong);
+  background-color: #000;
+  border-top: 1px solid var(--pf-line-light);
 }
 
 .pf-footer-brand-card {
   display: inline-flex;
   align-items: center;
-  padding: 14px 20px;
-  background-color: var(--pf-surface-brand);
-  border: 1px solid var(--pf-line-strong);
+  padding: 0;
+  background: transparent;
+  border: 0;
 }
 
 .pf-footer-logo {
   display: block;
-  height: 52px;
+  height: 56px;
   width: auto;
   max-width: 240px;
   object-fit: contain;
+  filter: grayscale(1) invert(1);
 }
 
 .pf-footer-info {
@@ -1937,7 +1938,7 @@ body {
   margin: 0;
   font-size: 13px;
   font-weight: 600;
-  color: var(--pf-ink);
+  color: var(--pf-paper);
 }
 
 .pf-footer-disclaimer {
@@ -1945,7 +1946,7 @@ body {
   max-width: 68ch;
   font-size: 11px;
   line-height: 1.55;
-  color: var(--pf-muted);
+  color: rgba(244, 241, 234, 0.62);
 }
 
 .pf-footer-links {
@@ -1956,7 +1957,7 @@ body {
 }
 
 .pf-footer-links a {
-  color: var(--pf-ink);
+  color: var(--pf-paper);
   text-decoration: none;
   font-size: 12px;
   font-weight: 600;
@@ -1964,8 +1965,8 @@ body {
 
 .pf-back-top {
   padding: 8px 12px;
-  background-color: var(--pf-surface-brand);
-  border: 1px solid var(--pf-line-strong);
+  background-color: var(--pf-dark-elevated);
+  border: 1px solid var(--pf-line-light);
 }
 
 /* --------------------------------------------------------------------------
