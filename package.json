@@ -1,0 +1,10 @@
+{
+  "name": "profacciata-monorepo",
+  "private": true,
+  "scripts": {
+    "dev": "cd app && bun run dev",
+    "build": "cd app && bun run build",
+    "preview": "cd app && bun run preview",
+    "test": "cd app && bun run test"
+  }
+}
