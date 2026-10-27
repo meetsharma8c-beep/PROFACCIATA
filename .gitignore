@@ -9,3 +9,6 @@ app/.nitro/
 app/.wrangler/
 app/.vercel/
 .vercel/
+
+# Environment variables & secrets
+.env*
